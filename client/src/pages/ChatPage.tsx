@@ -161,6 +161,11 @@ export default function ChatPage() {
           </div>
 
           <div className="flex items-center gap-2">
+            <Link href="/api-docs">
+              <Button variant="ghost" size="sm">
+                API Docs
+              </Button>
+            </Link>
             <LanguageToggle />
             <CurrencyToggle />
             <ThemeToggle />

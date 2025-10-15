@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import ChatPage from "@/pages/ChatPage";
 import ComparisonPage from "@/pages/ComparisonPage";
+import ApiDocsPage from "@/pages/ApiDocsPage";
 import NotFound from "@/pages/not-found";
 import "./i18n"; // Initialize i18n
 
@@ -13,6 +14,7 @@ function Router() {
     <Switch>
       <Route path="/" component={ChatPage} />
       <Route path="/compare" component={ComparisonPage} />
+      <Route path="/api-docs" component={ApiDocsPage} />
       <Route component={NotFound} />
     </Switch>
   );
