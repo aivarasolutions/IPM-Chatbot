@@ -5,11 +5,21 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 interface ChatMessageProps {
   role: "user" | "assistant";
   content: string;
-  timestamp?: Date;
+  timestamp?: Date | null;
 }
 
 export function ChatMessage({ role, content, timestamp }: ChatMessageProps) {
   const isUser = role === "user";
+  
+  const formatTimestamp = () => {
+    if (!timestamp) return null;
+    try {
+      const date = timestamp instanceof Date ? timestamp : new Date(timestamp as any);
+      return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    } catch {
+      return null;
+    }
+  };
 
   return (
     <div
@@ -36,12 +46,12 @@ export function ChatMessage({ role, content, timestamp }: ChatMessageProps) {
         )}
       >
         <p className="text-sm leading-relaxed whitespace-pre-wrap">{content}</p>
-        {timestamp && (
+        {formatTimestamp() && (
           <p className={cn(
             "text-xs mt-2 opacity-70",
             isUser ? "text-primary-foreground" : "text-muted-foreground"
           )}>
-            {timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+            {formatTimestamp()}
           </p>
         )}
       </div>
