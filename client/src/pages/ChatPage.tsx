@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
+import { Link } from "wouter";
 import { ChatMessage } from "@/components/ChatMessage";
 import { ChatInput } from "@/components/ChatInput";
 import { SuggestedQuestions } from "@/components/SuggestedQuestions";
@@ -172,8 +173,15 @@ export default function ChatPage() {
         {/* Sidebar - Desktop */}
         <aside className="hidden md:block w-80 border-r border-border bg-muted/30 overflow-y-auto">
           <div className="p-4 space-y-4">
+            <div className="flex items-center justify-between mb-3">
+              <h2 className="font-serif font-semibold text-lg">{t('property.featuredProperties')}</h2>
+              <Link href="/compare">
+                <Button variant="outline" size="sm">
+                  Compare
+                </Button>
+              </Link>
+            </div>
             <div>
-              <h2 className="font-serif font-semibold text-lg mb-3">Featured Properties</h2>
               {featuredProperties.length > 0 ? (
                 <div className="space-y-3">
                   {featuredProperties.map((property) => (

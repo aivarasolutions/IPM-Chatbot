@@ -73,12 +73,12 @@ export function PropertyCard({ property, onViewDetails }: PropertyCardProps) {
         </p>
       </CardContent>
 
-      <CardFooter className="pt-0">
+      <CardFooter className="pt-0 flex gap-2">
         <Button
           data-testid={`button-view-details-${property.id}`}
           onClick={() => onViewDetails?.(property)}
           variant="outline"
-          className="w-full"
+          className="flex-1"
         >
           View Details
         </Button>
