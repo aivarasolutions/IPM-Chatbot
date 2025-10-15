@@ -2,6 +2,7 @@ import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { MapPin, TrendingUp, Home } from "lucide-react";
+import { useCurrency } from "@/components/CurrencyToggle";
 import type { Property } from "@shared/schema";
 
 interface PropertyCardProps {
@@ -10,6 +11,8 @@ interface PropertyCardProps {
 }
 
 export function PropertyCard({ property, onViewDetails }: PropertyCardProps) {
+  const { formatPrice } = useCurrency();
+  
   return (
     <Card className="overflow-hidden hover-elevate transition-all duration-200" data-testid={`card-property-${property.id}`}>
       <div className="relative aspect-video bg-muted overflow-hidden">
@@ -48,7 +51,7 @@ export function PropertyCard({ property, onViewDetails }: PropertyCardProps) {
         <div className="flex items-baseline justify-between">
           <span className="text-xs text-muted-foreground">Price Range</span>
           <span className="font-mono font-semibold text-sm" data-testid={`text-price-${property.id}`}>
-            {property.priceRange}
+            {formatPrice(property.priceRange)}
           </span>
         </div>
 

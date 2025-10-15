@@ -2,6 +2,7 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { generateChatResponse } from "./services/openai";
+import { getExchangeRates } from "./services/currency";
 import { chatRequestSchema, insertLeadSchema, propertySearchSchema } from "@shared/schema";
 import { z } from "zod";
 
@@ -176,6 +177,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error fetching chat history:", error);
       res.status(500).json({ error: "Failed to fetch chat history" });
+    }
+  });
+
+  // Get exchange rates
+  app.get("/api/exchange-rates", async (req, res) => {
+    try {
+      const rates = await getExchangeRates();
+      res.json(rates);
+    } catch (error) {
+      console.error("Error fetching exchange rates:", error);
+      res.status(500).json({ error: "Failed to fetch exchange rates" });
     }
   });
 

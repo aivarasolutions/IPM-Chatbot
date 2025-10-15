@@ -7,6 +7,7 @@ import { TypingIndicator } from "@/components/TypingIndicator";
 import { PropertyCard } from "@/components/PropertyCard";
 import { LeadForm } from "@/components/LeadForm";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { CurrencyToggle } from "@/components/CurrencyToggle";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
@@ -155,7 +156,10 @@ export default function ChatPage() {
             </div>
           </div>
 
-          <ThemeToggle />
+          <div className="flex items-center gap-2">
+            <CurrencyToggle />
+            <ThemeToggle />
+          </div>
         </div>
       </header>
 
