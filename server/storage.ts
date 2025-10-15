@@ -15,6 +15,7 @@ export interface IStorage {
   createLead(lead: InsertLead): Promise<Lead>;
   
   // Chat Messages
+  getAllChatMessages(): Promise<ChatMessage[]>;
   getChatMessagesBySession(sessionId: string): Promise<ChatMessage[]>;
   createChatMessage(message: InsertChatMessage): Promise<ChatMessage>;
 }
@@ -64,6 +65,10 @@ export class DatabaseStorage implements IStorage {
   }
 
   // Chat Messages
+  async getAllChatMessages(): Promise<ChatMessage[]> {
+    return await db.select().from(chatMessages);
+  }
+
   async getChatMessagesBySession(sessionId: string): Promise<ChatMessage[]> {
     return await db
       .select()

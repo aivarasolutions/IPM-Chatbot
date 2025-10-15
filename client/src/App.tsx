@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import ChatPage from "@/pages/ChatPage";
 import ComparisonPage from "@/pages/ComparisonPage";
 import ApiDocsPage from "@/pages/ApiDocsPage";
+import AnalyticsPage from "@/pages/AnalyticsPage";
 import NotFound from "@/pages/not-found";
 import "./i18n"; // Initialize i18n
 
@@ -15,6 +16,7 @@ function Router() {
       <Route path="/" component={ChatPage} />
       <Route path="/compare" component={ComparisonPage} />
       <Route path="/api-docs" component={ApiDocsPage} />
+      <Route path="/analytics" component={AnalyticsPage} />
       <Route component={NotFound} />
     </Switch>
   );

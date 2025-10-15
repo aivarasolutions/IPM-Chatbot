@@ -191,6 +191,72 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Analytics endpoint
+  app.get("/api/analytics", async (req, res) => {
+    try {
+      const leads = await storage.getAllLeads();
+      const messages = await storage.getAllChatMessages();
+      
+      // Calculate analytics
+      const totalLeads = leads.length;
+      const totalSessions = new Set(messages.map(m => m.sessionId)).size;
+      const conversionRate = totalSessions > 0 ? (totalLeads / totalSessions) * 100 : 0;
+      
+      // Budget distribution
+      const budgetDistribution = leads.reduce((acc, lead) => {
+        acc[lead.budget] = (acc[lead.budget] || 0) + 1;
+        return acc;
+      }, {} as Record<string, number>);
+      
+      // Investment experience
+      const experienceDistribution = leads.reduce((acc, lead) => {
+        acc[lead.investmentExperience] = (acc[lead.investmentExperience] || 0) + 1;
+        return acc;
+      }, {} as Record<string, number>);
+      
+      // Location preference
+      const locationDistribution = leads.reduce((acc, lead) => {
+        acc[lead.locationPreference] = (acc[lead.locationPreference] || 0) + 1;
+        return acc;
+      }, {} as Record<string, number>);
+      
+      // Timeline distribution
+      const timelineDistribution = leads.reduce((acc, lead) => {
+        acc[lead.timeline] = (acc[lead.timeline] || 0) + 1;
+        return acc;
+      }, {} as Record<string, number>);
+      
+      // Messages per session
+      const sessionMessages = messages.reduce((acc, msg) => {
+        acc[msg.sessionId] = (acc[msg.sessionId] || 0) + 1;
+        return acc;
+      }, {} as Record<string, number>);
+      
+      const avgMessagesPerSession = totalSessions > 0 
+        ? Object.values(sessionMessages).reduce((a, b) => a + b, 0) / totalSessions 
+        : 0;
+      
+      res.json({
+        leads: {
+          total: totalLeads,
+          budgetDistribution,
+          experienceDistribution,
+          locationDistribution,
+          timelineDistribution,
+        },
+        conversations: {
+          totalSessions,
+          totalMessages: messages.length,
+          avgMessagesPerSession: Math.round(avgMessagesPerSession * 10) / 10,
+          conversionRate: Math.round(conversionRate * 10) / 10,
+        },
+      });
+    } catch (error) {
+      console.error("Error fetching analytics:", error);
+      res.status(500).json({ error: "Failed to fetch analytics" });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }
