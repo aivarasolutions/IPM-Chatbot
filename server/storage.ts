@@ -1,5 +1,6 @@
-import { type Property, type InsertProperty, type Lead, type InsertLead, type ChatMessage, type InsertChatMessage } from "@shared/schema";
-import { randomUUID } from "crypto";
+import { type Property, type InsertProperty, type Lead, type InsertLead, type ChatMessage, type InsertChatMessage, properties, leads, chatMessages } from "@shared/schema";
+import { db } from "./db";
+import { eq } from "drizzle-orm";
 
 export interface IStorage {
   // Properties
@@ -18,119 +19,66 @@ export interface IStorage {
   createChatMessage(message: InsertChatMessage): Promise<ChatMessage>;
 }
 
-export class MemStorage implements IStorage {
-  private properties: Map<string, Property>;
-  private leads: Map<string, Lead>;
-  private chatMessages: Map<string, ChatMessage>;
-
-  constructor() {
-    this.properties = new Map();
-    this.leads = new Map();
-    this.chatMessages = new Map();
-    
-    this.initializeProperties();
-  }
-
-  private async initializeProperties() {
-    const fs = await import("fs/promises");
-    const path = await import("path");
-    
-    try {
-      const propertiesData = await fs.readFile(
-        path.join(process.cwd(), "server/knowledge/properties.json"),
-        "utf-8"
-      );
-      const { featured_properties } = JSON.parse(propertiesData);
-      
-      featured_properties.forEach((prop: any) => {
-        const property: Property = {
-          id: prop.id,
-          name: prop.name,
-          location: prop.location,
-          country: prop.country,
-          priceRange: prop.priceRange,
-          roi: prop.roi,
-          features: prop.features,
-          description: prop.description,
-          imageUrl: prop.imageUrl,
-          propertyType: prop.propertyType,
-          createdAt: new Date(),
-        };
-        this.properties.set(property.id, property);
-      });
-    } catch (error) {
-      console.error("Error loading properties:", error);
-    }
-  }
-
+export class DatabaseStorage implements IStorage {
   // Properties
   async getAllProperties(): Promise<Property[]> {
-    return Array.from(this.properties.values());
+    return await db.select().from(properties);
   }
 
   async getPropertyById(id: string): Promise<Property | undefined> {
-    return this.properties.get(id);
+    const [property] = await db.select().from(properties).where(eq(properties.id, id));
+    return property || undefined;
   }
 
   async createProperty(insertProperty: InsertProperty): Promise<Property> {
-    const id = randomUUID();
-    const property: Property = {
-      ...insertProperty,
-      id,
-      createdAt: new Date(),
-    };
-    this.properties.set(id, property);
+    const [property] = await db
+      .insert(properties)
+      .values(insertProperty)
+      .returning();
     return property;
   }
 
   // Leads
   async getAllLeads(): Promise<Lead[]> {
-    return Array.from(this.leads.values());
+    return await db.select().from(leads);
   }
 
   async getLeadById(id: string): Promise<Lead | undefined> {
-    return this.leads.get(id);
+    const [lead] = await db.select().from(leads).where(eq(leads.id, id));
+    return lead || undefined;
   }
 
   async getLeadsBySession(sessionId: string): Promise<Lead[]> {
-    return Array.from(this.leads.values()).filter(
-      (lead) => lead.sessionId === sessionId
-    );
+    return await db.select().from(leads).where(eq(leads.sessionId, sessionId));
   }
 
   async createLead(insertLead: InsertLead): Promise<Lead> {
-    const id = randomUUID();
-    const lead: Lead = {
-      ...insertLead,
-      id,
-      qualificationStatus: "new",
-      createdAt: new Date(),
-    };
-    this.leads.set(id, lead);
+    const [lead] = await db
+      .insert(leads)
+      .values({
+        ...insertLead,
+        qualificationStatus: "new",
+      })
+      .returning();
     return lead;
   }
 
   // Chat Messages
   async getChatMessagesBySession(sessionId: string): Promise<ChatMessage[]> {
-    return Array.from(this.chatMessages.values())
-      .filter((msg) => msg.sessionId === sessionId)
-      .sort((a, b) => {
-        const timeA = a.timestamp?.getTime() || 0;
-        const timeB = b.timestamp?.getTime() || 0;
-        return timeA - timeB;
-      });
+    return await db
+      .select()
+      .from(chatMessages)
+      .where(eq(chatMessages.sessionId, sessionId))
+      .orderBy(chatMessages.timestamp);
   }
 
   async createChatMessage(insertMessage: InsertChatMessage): Promise<ChatMessage> {
-    const id = randomUUID();
-    const message: ChatMessage = {
-      ...insertMessage,
-      id,
-      timestamp: new Date(),
-    };
-    this.chatMessages.set(id, message);
+    const [message] = await db
+      .insert(chatMessages)
+      .values(insertMessage)
+      .returning();
     return message;
   }
 }
 
-export const storage = new MemStorage();
+export const storage = new DatabaseStorage();
