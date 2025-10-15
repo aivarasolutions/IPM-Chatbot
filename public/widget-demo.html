@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IPM Chatbot Widget Demo</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      background: white;
+      border-radius: 20px;
+      padding: 60px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 42px;
+      color: #1e40af;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 18px;
+      color: #6b7280;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .feature {
+      background: #f3f4f6;
+      padding: 20px;
+      border-radius: 12px;
+    }
+
+    .feature h3 {
+      color: #1e40af;
+      margin-bottom: 10px;
+    }
+
+    .feature p {
+      font-size: 14px;
+      margin: 0;
+    }
+
+    .cta {
+      background: #1e40af;
+      color: white;
+      padding: 16px 32px;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: 600;
+      display: inline-block;
+      margin-top: 30px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .cta:hover {
+      background: #1e3a8a;
+    }
+
+    .arrow {
+      position: fixed;
+      bottom: 100px;
+      right: 100px;
+      font-size: 48px;
+      color: #1e40af;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-10px);
+      }
+      60% {
+        transform: translateY(-5px);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 40px 30px;
+      }
+
+      h1 {
+        font-size: 32px;
+      }
+
+      .arrow {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🏠 IPM Property Chatbot</h1>
+    <p>
+      Your AI-powered real estate assistant for international property investments in Mexico and USA.
+      Get expert guidance on properties in Tulum, Playa del Carmen, Puerto Vallarta, Lake Norman, and Miami.
+    </p>
+
+    <div class="features">
+      <div class="feature">
+        <h3>🤖 AI-Powered</h3>
+        <p>Intelligent responses powered by GPT-4</p>
+      </div>
+      <div class="feature">
+        <h3>🌎 Multilingual</h3>
+        <p>Chat in English or Spanish</p>
+      </div>
+      <div class="feature">
+        <h3>💱 Live Currency</h3>
+        <p>Real-time USD/MXN conversion</p>
+      </div>
+      <div class="feature">
+        <h3>📊 Smart Matching</h3>
+        <p>Find properties that match your needs</p>
+      </div>
+    </div>
+
+    <p style="margin-top: 40px; font-size: 16px; color: #9ca3af;">
+      👉 <strong>Click the blue chat bubble</strong> in the bottom-right corner to start chatting!
+    </p>
+  </div>
+
+  <div class="arrow">↘️</div>
+
+  <!-- IPM Chatbot Widget - This is what you'll add to your website -->
+  <script src="/widget.js"></script>
+  <script>
+    IPMChatbot.init({
+      apiUrl: window.location.origin + '/api',
+      theme: 'light',
+      language: 'en',
+      position: 'bottom-right'
+    });
+  </script>
+</body>
+</html>
