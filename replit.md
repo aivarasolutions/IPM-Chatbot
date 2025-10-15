@@ -181,6 +181,8 @@ shared/
 - ✅ Created multi-step lead qualification form
 - ✅ Added dark mode support with theme toggle
 - ✅ Implemented responsive design (mobile/tablet/desktop)
+- ✅ Fixed critical bug in apiRequest() - now correctly returns parsed JSON instead of Response object
+- ✅ Completed e2e testing - chat flow, suggested questions, property display all verified
 
 ### OpenAI Integration
 Using Replit AI Integrations:
