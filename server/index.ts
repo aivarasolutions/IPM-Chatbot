@@ -8,6 +8,7 @@ const app = express();
 
 // CORS configuration for IPM domains
 const allowedOrigins = [
+  "https://www.ipm.services",
   "https://ipm.services",
   "https://djzrukff.manus.space",
   "http://localhost:3000",
