@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 import { ChatMessage } from "@/components/ChatMessage";
 import { ChatInput } from "@/components/ChatInput";
 import { SuggestedQuestions } from "@/components/SuggestedQuestions";
@@ -8,6 +9,7 @@ import { PropertyCard } from "@/components/PropertyCard";
 import { LeadForm } from "@/components/LeadForm";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { CurrencyToggle } from "@/components/CurrencyToggle";
+import { LanguageToggle } from "@/components/LanguageToggle";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
@@ -16,6 +18,7 @@ import { Building2, Menu, Home as HomeIcon } from "lucide-react";
 import type { ChatMessage as ChatMessageType, ChatResponse, Property } from "@shared/schema";
 
 export default function ChatPage() {
+  const { t } = useTranslation();
   const [messages, setMessages] = useState<ChatMessageType[]>([]);
   const [sessionId, setSessionId] = useState<string>("");
   const [suggestedQuestions, setSuggestedQuestions] = useState<string[]>([
@@ -133,7 +136,7 @@ export default function ChatPage() {
               </SheetTrigger>
               <SheetContent side="left" className="w-80">
                 <SheetHeader>
-                  <SheetTitle className="font-serif">Featured Properties</SheetTitle>
+                  <SheetTitle className="font-serif">{t('property.featuredProperties')}</SheetTitle>
                 </SheetHeader>
                 <div className="mt-6 space-y-4">
                   {featuredProperties.map((property) => (
@@ -149,14 +152,15 @@ export default function ChatPage() {
               </div>
               <div>
                 <h1 className="font-serif font-semibold text-lg leading-none" data-testid="text-app-title">
-                  IPM Chatbot
+                  {t('app.title')}
                 </h1>
-                <p className="text-xs text-muted-foreground">International Property Management</p>
+                <p className="text-xs text-muted-foreground">{t('app.subtitle')}</p>
               </div>
             </div>
           </div>
 
           <div className="flex items-center gap-2">
+            <LanguageToggle />
             <CurrencyToggle />
             <ThemeToggle />
           </div>
@@ -195,9 +199,9 @@ export default function ChatPage() {
                   <div className="h-16 w-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
                     <Building2 className="h-8 w-8 text-primary" />
                   </div>
-                  <h2 className="font-serif font-semibold text-2xl mb-2">Welcome to IPM</h2>
+                  <h2 className="font-serif font-semibold text-2xl mb-2">{t('welcome.title')}</h2>
                   <p className="text-muted-foreground max-w-md mx-auto mb-8">
-                    Your trusted partner for international property investment. Ask me anything about cross-border real estate, investment opportunities, or property management.
+                    {t('welcome.subtitle')}
                   </p>
                   <div className="grid gap-3 sm:grid-cols-2 max-w-2xl mx-auto">
                     {suggestedQuestions.map((q, idx) => (
