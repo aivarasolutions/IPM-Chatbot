@@ -1,0 +1,255 @@
+import { useState, useEffect, useRef } from "react";
+import { useQuery, useMutation } from "@tanstack/react-query";
+import { ChatMessage } from "@/components/ChatMessage";
+import { ChatInput } from "@/components/ChatInput";
+import { SuggestedQuestions } from "@/components/SuggestedQuestions";
+import { TypingIndicator } from "@/components/TypingIndicator";
+import { PropertyCard } from "@/components/PropertyCard";
+import { LeadForm } from "@/components/LeadForm";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { apiRequest, queryClient } from "@/lib/queryClient";
+import { Building2, Menu, Home as HomeIcon } from "lucide-react";
+import type { ChatMessage as ChatMessageType, ChatResponse, Property } from "@shared/schema";
+
+export default function ChatPage() {
+  const [messages, setMessages] = useState<ChatMessageType[]>([]);
+  const [sessionId, setSessionId] = useState<string>("");
+  const [suggestedQuestions, setSuggestedQuestions] = useState<string[]>([
+    "Tell me about beachfront properties in Tulum",
+    "What are the tax implications for US investors in Mexico?",
+    "How does the fideicomiso system work?",
+    "What ROI can I expect from Mexican properties?",
+  ]);
+  const [showLeadForm, setShowLeadForm] = useState(false);
+  const [featuredProperties, setFeaturedProperties] = useState<Property[]>([]);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const id = sessionId || `session-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    setSessionId(id);
+  }, []);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  const { data: properties } = useQuery<Property[]>({
+    queryKey: ["/api/properties"],
+  });
+
+  useEffect(() => {
+    if (properties) {
+      setFeaturedProperties(properties.slice(0, 3));
+    }
+  }, [properties]);
+
+  const chatMutation = useMutation({
+    mutationFn: async (message: string) => {
+      const response = await apiRequest<ChatResponse>("POST", "/api/chat", {
+        message,
+        sessionId,
+      });
+      return response;
+    },
+    onSuccess: (data) => {
+      const assistantMessage: ChatMessageType = {
+        id: `msg-${Date.now()}`,
+        sessionId,
+        role: "assistant",
+        content: data.message,
+        timestamp: new Date(),
+        metadata: null,
+      };
+      setMessages((prev) => [...prev, assistantMessage]);
+
+      if (data.suggestedQuestions && data.suggestedQuestions.length > 0) {
+        setSuggestedQuestions(data.suggestedQuestions);
+      }
+
+      if (data.leadQualificationPrompt) {
+        setTimeout(() => setShowLeadForm(true), 1000);
+      }
+
+      if (data.properties && data.properties.length > 0) {
+        setFeaturedProperties(data.properties.slice(0, 3));
+      }
+    },
+  });
+
+  const leadMutation = useMutation({
+    mutationFn: async (leadData: any) => {
+      return apiRequest("POST", "/api/leads", {
+        ...leadData,
+        sessionId,
+      });
+    },
+    onSuccess: () => {
+      setShowLeadForm(false);
+      const confirmMessage: ChatMessageType = {
+        id: `msg-${Date.now()}`,
+        sessionId,
+        role: "assistant",
+        content: "Thank you for your information! One of our international investment specialists will contact you within 24 hours to discuss your property investment goals. In the meantime, feel free to continue asking questions.",
+        timestamp: new Date(),
+        metadata: null,
+      };
+      setMessages((prev) => [...prev, confirmMessage]);
+      queryClient.invalidateQueries({ queryKey: ["/api/leads"] });
+    },
+  });
+
+  const handleSendMessage = (message: string) => {
+    const userMessage: ChatMessageType = {
+      id: `msg-${Date.now()}`,
+      sessionId,
+      role: "user",
+      content: message,
+      timestamp: new Date(),
+      metadata: null,
+    };
+    setMessages((prev) => [...prev, userMessage]);
+    chatMutation.mutate(message);
+  };
+
+  return (
+    <div className="flex flex-col h-screen bg-background">
+      {/* Header */}
+      <header className="border-b border-border bg-background/95 backdrop-blur-sm sticky top-0 z-10">
+        <div className="flex items-center justify-between px-4 py-3 max-w-7xl mx-auto">
+          <div className="flex items-center gap-3">
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" className="md:hidden" data-testid="button-menu">
+                  <Menu className="h-5 w-5" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="left" className="w-80">
+                <SheetHeader>
+                  <SheetTitle className="font-serif">Featured Properties</SheetTitle>
+                </SheetHeader>
+                <div className="mt-6 space-y-4">
+                  {featuredProperties.map((property) => (
+                    <PropertyCard key={property.id} property={property} />
+                  ))}
+                </div>
+              </SheetContent>
+            </Sheet>
+
+            <div className="flex items-center gap-2">
+              <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
+                <Building2 className="h-5 w-5 text-primary-foreground" />
+              </div>
+              <div>
+                <h1 className="font-serif font-semibold text-lg leading-none" data-testid="text-app-title">
+                  IPM Chatbot
+                </h1>
+                <p className="text-xs text-muted-foreground">International Property Management</p>
+              </div>
+            </div>
+          </div>
+
+          <ThemeToggle />
+        </div>
+      </header>
+
+      {/* Main Content */}
+      <div className="flex-1 flex overflow-hidden">
+        {/* Sidebar - Desktop */}
+        <aside className="hidden md:block w-80 border-r border-border bg-muted/30 overflow-y-auto">
+          <div className="p-4 space-y-4">
+            <div>
+              <h2 className="font-serif font-semibold text-lg mb-3">Featured Properties</h2>
+              {featuredProperties.length > 0 ? (
+                <div className="space-y-3">
+                  {featuredProperties.map((property) => (
+                    <PropertyCard key={property.id} property={property} />
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-8 text-muted-foreground">
+                  <HomeIcon className="h-12 w-12 mx-auto mb-2 opacity-20" />
+                  <p className="text-sm">Properties loading...</p>
+                </div>
+              )}
+            </div>
+          </div>
+        </aside>
+
+        {/* Chat Area */}
+        <main className="flex-1 flex flex-col">
+          <ScrollArea className="flex-1">
+            <div className="max-w-5xl mx-auto px-4 py-6">
+              {messages.length === 0 ? (
+                <div className="text-center py-12">
+                  <div className="h-16 w-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                    <Building2 className="h-8 w-8 text-primary" />
+                  </div>
+                  <h2 className="font-serif font-semibold text-2xl mb-2">Welcome to IPM</h2>
+                  <p className="text-muted-foreground max-w-md mx-auto mb-8">
+                    Your trusted partner for international property investment. Ask me anything about cross-border real estate, investment opportunities, or property management.
+                  </p>
+                  <div className="grid gap-3 sm:grid-cols-2 max-w-2xl mx-auto">
+                    {suggestedQuestions.map((q, idx) => (
+                      <Button
+                        key={idx}
+                        variant="outline"
+                        className="justify-start text-left h-auto py-3 px-4"
+                        onClick={() => handleSendMessage(q)}
+                        data-testid={`button-welcome-${idx}`}
+                      >
+                        {q}
+                      </Button>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <>
+                  {messages.map((msg) => (
+                    <ChatMessage
+                      key={msg.id}
+                      role={msg.role as "user" | "assistant"}
+                      content={msg.content}
+                      timestamp={msg.timestamp || undefined}
+                    />
+                  ))}
+                  {chatMutation.isPending && <TypingIndicator />}
+                </>
+              )}
+              <div ref={messagesEndRef} />
+            </div>
+          </ScrollArea>
+
+          {/* Suggested Questions */}
+          {messages.length > 0 && suggestedQuestions.length > 0 && (
+            <SuggestedQuestions
+              questions={suggestedQuestions}
+              onSelectQuestion={handleSendMessage}
+              disabled={chatMutation.isPending}
+            />
+          )}
+
+          {/* Input */}
+          <ChatInput
+            onSendMessage={handleSendMessage}
+            disabled={chatMutation.isPending}
+          />
+        </main>
+      </div>
+
+      {/* Lead Form Dialog */}
+      <LeadForm
+        open={showLeadForm}
+        onOpenChange={setShowLeadForm}
+        onSubmit={(data) => leadMutation.mutate(data)}
+        sessionId={sessionId}
+      />
+    </div>
+  );
+}
