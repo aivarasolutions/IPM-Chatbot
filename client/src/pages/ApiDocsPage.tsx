@@ -16,15 +16,14 @@ export default function ApiDocsPage() {
     setTimeout(() => setCopiedSnippet(null), 2000);
   };
 
-  const widgetSnippet = `<!-- IPM Chatbot Widget -->
-<div id="ipm-chatbot"></div>
+  const widgetSnippet = `<!-- IPM Chatbot Widget - Add before closing </body> tag -->
 <script src="https://${window.location.hostname}/widget.js"></script>
 <script>
   IPMChatbot.init({
-    container: '#ipm-chatbot',
     apiUrl: 'https://${window.location.hostname}/api',
-    theme: 'light', // or 'dark'
-    language: 'en' // or 'es'
+    theme: 'light',    // 'light' or 'dark'
+    language: 'en',    // 'en' or 'es'
+    position: 'bottom-right' // 'bottom-right', 'bottom-left', 'top-right', 'top-left'
   });
 </script>`;
 
@@ -130,9 +129,9 @@ console.log(data.rate); // e.g., 18.5`;
           <TabsContent value="widget" className="space-y-4">
             <Card>
               <CardHeader>
-                <CardTitle>Quick Integration</CardTitle>
+                <CardTitle>Floating Chat Widget</CardTitle>
                 <CardDescription>
-                  Add the IPM chatbot to your website with just a few lines of code
+                  Add a professional floating chat bubble to your website - appears in bottom-right corner
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -163,30 +162,36 @@ console.log(data.rate); // e.g., 18.5`;
                   <h4 className="font-semibold">Configuration Options</h4>
                   <div className="space-y-2">
                     <div className="flex items-start gap-2">
-                      <Badge variant="secondary" className="mt-0.5">container</Badge>
-                      <p className="text-sm text-muted-foreground">
-                        CSS selector for the chatbot container (required)
-                      </p>
-                    </div>
-                    <div className="flex items-start gap-2">
-                      <Badge variant="secondary" className="mt-0.5">apiUrl</Badge>
+                      <Badge variant="secondary" className="mt-0.5 shrink-0">apiUrl</Badge>
                       <p className="text-sm text-muted-foreground">
                         Base URL for the API endpoint (required)
                       </p>
                     </div>
                     <div className="flex items-start gap-2">
-                      <Badge variant="secondary" className="mt-0.5">theme</Badge>
+                      <Badge variant="secondary" className="mt-0.5 shrink-0">theme</Badge>
                       <p className="text-sm text-muted-foreground">
                         'light' or 'dark' (optional, defaults to 'light')
                       </p>
                     </div>
                     <div className="flex items-start gap-2">
-                      <Badge variant="secondary" className="mt-0.5">language</Badge>
+                      <Badge variant="secondary" className="mt-0.5 shrink-0">language</Badge>
                       <p className="text-sm text-muted-foreground">
                         'en' or 'es' (optional, defaults to browser language)
                       </p>
                     </div>
+                    <div className="flex items-start gap-2">
+                      <Badge variant="secondary" className="mt-0.5 shrink-0">position</Badge>
+                      <p className="text-sm text-muted-foreground">
+                        'bottom-right', 'bottom-left', 'top-right', or 'top-left' (optional, defaults to 'bottom-right')
+                      </p>
+                    </div>
                   </div>
+                </div>
+
+                <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-900 rounded-lg p-4">
+                  <p className="text-sm text-blue-900 dark:text-blue-100">
+                    <strong>💡 Pro Tip:</strong> The widget automatically creates a floating chat bubble. No need for HTML containers - just add the script tags before your closing &lt;/body&gt; tag!
+                  </p>
                 </div>
               </CardContent>
             </Card>
