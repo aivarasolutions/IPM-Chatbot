@@ -133,10 +133,10 @@ export default function AnalyticsPage() {
                     : 0;
                   return (
                     <div key={budget} className="space-y-1">
-                      <div className="flex items-center justify-between">
-                        <span className="text-sm font-medium">{budget}</span>
-                        <div className="flex items-center gap-2">
-                          <span className="text-sm text-muted-foreground">{count} leads</span>
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="text-sm font-medium truncate flex-1">{budget}</span>
+                        <div className="flex items-center gap-2 shrink-0">
+                          <span className="text-sm text-muted-foreground whitespace-nowrap">{count} leads</span>
                           <Badge variant="secondary">{Math.round(percentage)}%</Badge>
                         </div>
                       </div>
@@ -166,9 +166,9 @@ export default function AnalyticsPage() {
               <CardContent>
                 <div className="space-y-3">
                   {Object.entries(analytics.leads.experienceDistribution).map(([exp, count]) => (
-                    <div key={exp} className="flex items-center justify-between">
-                      <span className="text-sm capitalize">{exp.replace('-', ' ')}</span>
-                      <Badge variant="outline">{count}</Badge>
+                    <div key={exp} className="flex items-center justify-between gap-2">
+                      <span className="text-sm capitalize truncate flex-1">{exp.replace('-', ' ')}</span>
+                      <Badge variant="outline" className="shrink-0">{count}</Badge>
                     </div>
                   ))}
                 </div>
@@ -187,9 +187,9 @@ export default function AnalyticsPage() {
               <CardContent>
                 <div className="space-y-3">
                   {Object.entries(analytics.leads.locationDistribution).map(([location, count]) => (
-                    <div key={location} className="flex items-center justify-between">
-                      <span className="text-sm">{location}</span>
-                      <Badge variant="outline">{count}</Badge>
+                    <div key={location} className="flex items-center justify-between gap-2">
+                      <span className="text-sm truncate flex-1">{location}</span>
+                      <Badge variant="outline" className="shrink-0">{count}</Badge>
                     </div>
                   ))}
                 </div>
@@ -208,9 +208,9 @@ export default function AnalyticsPage() {
               <CardContent>
                 <div className="space-y-3">
                   {Object.entries(analytics.leads.timelineDistribution).map(([timeline, count]) => (
-                    <div key={timeline} className="flex items-center justify-between">
-                      <span className="text-sm">{timeline}</span>
-                      <Badge variant="outline">{count}</Badge>
+                    <div key={timeline} className="flex items-center justify-between gap-2">
+                      <span className="text-sm truncate flex-1">{timeline}</span>
+                      <Badge variant="outline" className="shrink-0">{count}</Badge>
                     </div>
                   ))}
                 </div>

@@ -80,10 +80,10 @@ export default function ComparisonPage() {
                           !selectedProperties.includes(property.id)
                         }
                       />
-                      <div className="flex-1">
-                        <h3 className="font-semibold mb-1">{property.name}</h3>
-                        <p className="text-sm text-muted-foreground">{property.location}</p>
-                        <p className="text-sm font-mono mt-2">{formatPrice(property.priceRange)}</p>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-semibold mb-1 break-words">{property.name}</h3>
+                        <p className="text-sm text-muted-foreground break-words">{property.location}</p>
+                        <p className="text-sm font-mono mt-2 break-words">{formatPrice(property.priceRange)}</p>
                       </div>
                     </div>
                   </div>
@@ -102,9 +102,9 @@ export default function ComparisonPage() {
                   <th className="text-left p-4 bg-muted font-semibold">Feature</th>
                   {selectedProps.map((prop) => (
                     <th key={prop.id} className="text-left p-4 bg-muted">
-                      <div className="min-w-[200px]">
-                        <h3 className="font-serif font-semibold text-lg mb-1">{prop.name}</h3>
-                        <p className="text-sm text-muted-foreground font-normal">
+                      <div className="min-w-[200px] max-w-[300px]">
+                        <h3 className="font-serif font-semibold text-lg mb-1 break-words">{prop.name}</h3>
+                        <p className="text-sm text-muted-foreground font-normal break-words">
                           {prop.location}
                         </p>
                         <Button
@@ -125,7 +125,7 @@ export default function ComparisonPage() {
                 <tr className="border-b">
                   <td className="p-4 font-medium">Price Range</td>
                   {selectedProps.map((prop) => (
-                    <td key={prop.id} className="p-4 font-mono">
+                    <td key={prop.id} className="p-4 font-mono break-words max-w-[300px]">
                       {formatPrice(prop.priceRange)}
                     </td>
                   ))}
@@ -157,10 +157,10 @@ export default function ComparisonPage() {
                 <tr className="border-b">
                   <td className="p-4 font-medium align-top">Features</td>
                   {selectedProps.map((prop) => (
-                    <td key={prop.id} className="p-4">
+                    <td key={prop.id} className="p-4 max-w-[300px]">
                       <div className="flex flex-wrap gap-1.5">
                         {prop.features.map((feature, idx) => (
-                          <Badge key={idx} variant="secondary" className="text-xs">
+                          <Badge key={idx} variant="secondary" className="text-xs truncate max-w-[140px]" title={feature}>
                             {feature}
                           </Badge>
                         ))}
@@ -171,7 +171,7 @@ export default function ComparisonPage() {
                 <tr>
                   <td className="p-4 font-medium align-top">Description</td>
                   {selectedProps.map((prop) => (
-                    <td key={prop.id} className="p-4 text-sm text-muted-foreground">
+                    <td key={prop.id} className="p-4 text-sm text-muted-foreground max-w-[300px] break-words">
                       {prop.description}
                     </td>
                   ))}

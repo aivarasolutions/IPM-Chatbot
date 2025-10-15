@@ -37,7 +37,7 @@ export function PropertyCard({ property, onViewDetails }: PropertyCardProps) {
 
       <CardHeader className="space-y-2 pb-3">
         <div className="flex items-start justify-between gap-2">
-          <h3 className="font-serif font-semibold text-lg leading-tight" data-testid={`text-property-name-${property.id}`}>
+          <h3 className="font-serif font-semibold text-lg leading-tight break-words" data-testid={`text-property-name-${property.id}`}>
             {property.name}
           </h3>
         </div>
@@ -57,7 +57,7 @@ export function PropertyCard({ property, onViewDetails }: PropertyCardProps) {
 
         <div className="flex flex-wrap gap-1.5">
           {property.features.slice(0, 3).map((feature, idx) => (
-            <Badge key={idx} variant="secondary" className="text-xs">
+            <Badge key={idx} variant="secondary" className="text-xs truncate max-w-[120px]" title={feature}>
               {feature}
             </Badge>
           ))}
