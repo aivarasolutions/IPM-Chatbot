@@ -1,0 +1,76 @@
+{
+  "featured_properties": [
+    {
+      "id": "tulum-eco-resort",
+      "name": "Tulum Eco Resort Condos",
+      "location": "Tulum, Quintana Roo, Mexico",
+      "country": "Mexico",
+      "priceRange": "$285,000 - $450,000 USD",
+      "roi": "12%",
+      "propertyType": "Beachfront Condo",
+      "features": ["Beachfront", "Eco-Friendly", "International Rental Program", "Rooftop Pool", "Yoga Studio"],
+      "description": "Luxury eco-friendly condos with guaranteed international rental program managed by IPM USA. These stunning beachfront properties offer sustainable living with high ROI potential.",
+      "imageUrl": null
+    },
+    {
+      "id": "playa-penthouses",
+      "name": "Playa del Carmen Penthouses",
+      "location": "Playa del Carmen, Quintana Roo, Mexico",
+      "country": "Mexico",
+      "priceRange": "$450,000 - $650,000 USD",
+      "roi": "10%",
+      "propertyType": "Penthouse",
+      "features": ["Rooftop Pool", "Downtown", "High International ROI", "Ocean Views", "24/7 Concierge"],
+      "description": "Luxury penthouses marketed to international travelers through IPM's global network. Located in the heart of Playa del Carmen with premium amenities.",
+      "imageUrl": null
+    },
+    {
+      "id": "lake-norman-homes",
+      "name": "Lake Norman Luxury Homes",
+      "location": "Lake Norman, North Carolina, USA",
+      "country": "USA",
+      "priceRange": "$750,000 - $1,200,000 USD",
+      "roi": "8%",
+      "propertyType": "Waterfront Home",
+      "features": ["Waterfront", "Private Dock", "Domestic Stability", "Large Family Property", "Golf Course Access"],
+      "description": "Premium US waterfront properties for international and domestic investors. Perfect for family vacations with stable, consistent returns.",
+      "imageUrl": null
+    },
+    {
+      "id": "puerto-vallarta-villas",
+      "name": "Puerto Vallarta Ocean Villas",
+      "location": "Puerto Vallarta, Jalisco, Mexico",
+      "country": "Mexico",
+      "priceRange": "$380,000 - $520,000 USD",
+      "roi": "11%",
+      "propertyType": "Villa",
+      "features": ["Ocean View", "Private Pool", "Gated Community", "International Appeal", "Modern Design"],
+      "description": "Exclusive ocean-view villas in Puerto Vallarta's premier resort community. High demand from international travelers ensures excellent occupancy rates.",
+      "imageUrl": null
+    },
+    {
+      "id": "cancun-condos",
+      "name": "Cancun Hotel Zone Condos",
+      "location": "Cancun, Quintana Roo, Mexico",
+      "country": "Mexico",
+      "priceRange": "$320,000 - $480,000 USD",
+      "roi": "11.5%",
+      "propertyType": "Resort Condo",
+      "features": ["Hotel Zone", "Beach Access", "All-Inclusive Option", "High Occupancy", "Professional Management"],
+      "description": "Investment condos in Cancun's famous Hotel Zone with optional all-inclusive rental programs. IPM ensures maximum occupancy through global marketing.",
+      "imageUrl": null
+    },
+    {
+      "id": "miami-waterfront",
+      "name": "Miami Waterfront Apartments",
+      "location": "Miami, Florida, USA",
+      "country": "USA",
+      "priceRange": "$650,000 - $950,000 USD",
+      "roi": "7.5%",
+      "propertyType": "Waterfront Apartment",
+      "features": ["City Views", "Waterfront", "US Market Stability", "Year-Round Demand", "Premium Location"],
+      "description": "Modern waterfront apartments in Miami's thriving market. Perfect for investors seeking US stability with international appeal.",
+      "imageUrl": null
+    }
+  ]
+}

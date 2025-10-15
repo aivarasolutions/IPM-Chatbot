@@ -1,0 +1,52 @@
+{
+  "legal_questions": {
+    "fideicomiso": {
+      "question": "How does the fideicomiso system work for US buyers?",
+      "answer": "The fideicomiso is a secure, time-tested bank trust system that IPM has helped hundreds of US clients navigate successfully. As a Mexican bank trust, it gives you all ownership rights (sell, rent, inherit, improve) while a Mexican bank holds the title as trustee. This system was created specifically for foreign property ownership in restricted zones (within 50km of coastline or 100km of borders). IPM works with trusted Mexican attorneys to ensure proper setup and ongoing compliance. The trust term is 50 years and is renewable indefinitely. You maintain complete control and all economic benefits of ownership."
+    },
+    "us_tax_reporting": {
+      "question": "What are the tax implications for US citizens owning rental property in Mexico?",
+      "answer": "As a US-based company with extensive cross-border experience, IPM guides clients through all tax implications. US citizens must report Mexican rental income on their US tax returns (IRS Form 1040 Schedule E). Mexico typically withholds 25% on rental income, but this can be optimized through proper structuring and may qualify for foreign tax credits on your US return. You can often credit Mexican taxes paid against US tax liability. IPM provides multi-currency financial reporting to simplify tax filing. We recommend working with a CPA experienced in international real estate, and we can connect you with our trusted network of tax professionals."
+    },
+    "foreign_ownership_restrictions": {
+      "question": "Can US citizens own property directly in Mexico?",
+      "answer": "US citizens cannot own property directly in Mexico's restricted zones (coastal and border areas where most vacation properties are located), but the fideicomiso system provides equivalent ownership rights. For properties outside restricted zones, direct ownership is possible. IPM specializes in navigating these requirements for US and Canadian investors, ensuring you have the same practical ownership benefits regardless of the legal structure. We handle all the complexities so you can focus on enjoying your investment returns."
+    },
+    "canadian_investors": {
+      "question": "Are the requirements different for Canadian investors?",
+      "answer": "Canadian investors face the same fideicomiso requirements as US citizens in Mexico's restricted zones. However, Canada has a tax treaty with Mexico that can provide certain benefits. Canadian investors must report Mexican rental income to the CRA (Canada Revenue Agency). IPM has extensive experience with both US and Canadian investors and can guide you through the specific requirements for Canadian citizens, including tax treaty benefits and proper structuring."
+    }
+  },
+  "investment_guidance": {
+    "financing_options": {
+      "question": "What financing options are available for international property purchases?",
+      "answer": "IPM helps clients navigate several financing options: 1) US bank international loans (typically requiring 40-50% down, higher rates), 2) Developer financing in Mexico (often 30-40% down, competitive rates, built into purchase), 3) Home equity from US properties, 4) International lenders specializing in Mexico real estate, 5) Cash purchases (many investors prefer this for simplicity). We work with a network of lenders experienced in cross-border transactions and can help you compare options based on your situation."
+    },
+    "roi_expectations": {
+      "question": "What ROI can I realistically expect?",
+      "answer": "IPM's managed properties achieve 8-12% annual ROI depending on location and property type. Mexican properties typically yield 10-12% (Tulum, Playa del Carmen, Puerto Vallarta) with 75-85% occupancy rates. US properties average 7-9% (Lake Norman, Miami) with 70-80% occupancy. These figures include rental income minus management fees, maintenance, and taxes. ROI varies based on property price, location, season optimization, and management quality. IPM's international marketing across Airbnb, Booking.com, and other platforms maximizes occupancy. We provide detailed ROI projections for specific properties you're considering."
+    },
+    "currency_risk": {
+      "question": "How do I manage currency exchange risk?",
+      "answer": "Currency fluctuations between USD and MXN can impact your investment. IPM helps mitigate this through: 1) Rental contracts in USD (common for international vacation rentals), 2) Strategic timing of currency exchanges, 3) Multi-currency bank accounts, 4) Hedging strategies for large transactions, 5) Taking advantage of favorable exchange rates. Currently, USD strength provides buying advantages in Mexico. We provide multi-currency financial reporting and can connect you with currency specialists for larger investments. Many investors view peso fluctuations as creating buying opportunities rather than just risks."
+    },
+    "property_management_distance": {
+      "question": "How does property management work when I'm in the US?",
+      "answer": "This is IPM's core expertise - managing international properties for US-based owners. Our comprehensive service includes: 24/7 multilingual guest support, professional maintenance and cleaning, dynamic pricing optimization, global marketing across all major platforms, multi-currency financial reporting with monthly statements, legal and tax compliance, emergency response, and quality inspections. You receive detailed monthly reports and can monitor your property performance through our owner portal. We handle everything from guest check-in to maintenance coordination, so you never need to be physically present. Our 10+ years of experience means we've solved every challenge that can arise in cross-border property management."
+    }
+  },
+  "process_questions": {
+    "buying_process": {
+      "question": "What's the process for buying property in Mexico as a US citizen?",
+      "answer": "IPM guides you through each step: 1) Property search and selection (we help identify properties matching your goals), 2) Make an offer (we help negotiate), 3) Hire a notario público (required Mexican notary/attorney - we have trusted partners), 4) Set up fideicomiso trust with Mexican bank (we coordinate), 5) Due diligence (title search, property inspection), 6) Sign purchase agreement, 7) Transfer funds (we help with international wire transfers), 8) Close transaction and receive property, 9) Set up property management with IPM. The process typically takes 60-90 days. We coordinate with our network of attorneys, banks, and notarios to ensure a smooth transaction."
+    },
+    "timeline": {
+      "question": "How long does it take to start earning rental income?",
+      "answer": "Once you own the property, IPM can begin generating rental income quickly: 1-2 weeks for property setup (professional photography, listing creation, pricing strategy), 2-4 weeks to secure first bookings (depending on season), full optimization within 2-3 months (as listings gain reviews and ranking). Mexico's year-round tourism means consistent income opportunities. We often secure bookings during the closing process so income begins immediately upon ownership transfer. Our global marketing reach and dynamic pricing ensure you hit optimal occupancy rates as quickly as possible."
+    },
+    "ongoing_costs": {
+      "question": "What are the ongoing costs of ownership?",
+      "answer": "IPM provides transparent cost analysis: Property management (typically 15-20% of rental income), HOA/condo fees (varies by property, $100-500/month), Property taxes in Mexico (much lower than US, typically 0.1-0.2% of property value annually), Utilities (usually covered by rental income), Fideicomiso renewal (every 50 years, ~$500-1000), Maintenance reserve (recommended 5-10% of rental income), Insurance (property and liability, ~$800-2000/year). US properties have higher property taxes (1-2% of value) but no fideicomiso costs. We help you budget accurately with detailed cost projections for any property you're considering."
+    }
+  }
+}

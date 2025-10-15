@@ -1,0 +1,75 @@
+{
+  "company": {
+    "name": "International Property Management (IPM)",
+    "headquarters": "United States",
+    "experience_years": 10,
+    "properties_managed": 30,
+    "specialization": [
+      "International vacation rental management",
+      "Real estate sales",
+      "Cross-border investment consultation"
+    ],
+    "primary_markets": {
+      "mexico": [
+        "Riviera Maya (Playa del Carmen, Tulum, Cancun)",
+        "Puerto Vallarta",
+        "Other premium Mexican resort destinations"
+      ],
+      "usa": [
+        "Lake Norman, North Carolina",
+        "Miami, Florida"
+      ]
+    }
+  },
+  "key_statistics": {
+    "average_occupancy": "75-85%",
+    "annual_roi_range": "8-12%",
+    "occupancy_consistency": "year-round",
+    "property_specialization": ["Large family properties", "Waterfront locations"],
+    "expertise": ["Cross-border real estate investment", "International property management"]
+  },
+  "services": {
+    "property_management": {
+      "description": "Cross-border property management with 75-85% occupancy rates",
+      "features": [
+        "International revenue optimization",
+        "Dynamic pricing strategies",
+        "24/7 multilingual guest support",
+        "Professional maintenance services",
+        "Multi-currency financial reporting",
+        "International wire transfers"
+      ]
+    },
+    "marketing": {
+      "platforms": ["Airbnb", "Booking.com", "Expedia", "VRBO"],
+      "reach": "Global marketing across international booking platforms",
+      "strategy": "Multi-platform optimization for maximum visibility"
+    },
+    "legal_compliance": {
+      "jurisdictions": ["US", "Mexico"],
+      "services": [
+        "Legal compliance across jurisdictions",
+        "Fideicomiso setup assistance",
+        "Tax optimization for international property owners",
+        "Attorney network for cross-border transactions"
+      ]
+    },
+    "investor_support": {
+      "services": [
+        "Investment analysis and ROI projections",
+        "Cross-border financing guidance",
+        "Currency management consultation",
+        "Market insights and trends",
+        "Property acquisition assistance"
+      ]
+    }
+  },
+  "unique_value_propositions": [
+    "USA-based company with deep international expertise",
+    "10+ years navigating cross-border complexities",
+    "Proven track record with US and Canadian investors",
+    "Cultural bridge between US investors and international markets",
+    "Full-service management eliminating investor burden",
+    "Expert guidance on legal and tax implications"
+  ]
+}

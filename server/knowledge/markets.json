@@ -1,0 +1,118 @@
+{
+  "market_analysis": {
+    "mexico": {
+      "advantages": [
+        "Higher ROI potential (10-12% average)",
+        "Lower property prices compared to US",
+        "Strong vacation rental demand",
+        "Favorable exchange rates for USD investors",
+        "Growing tourism industry",
+        "Established expat communities"
+      ],
+      "considerations": [
+        "Fideicomiso trust requirement for foreign ownership",
+        "Currency fluctuation risks",
+        "Different legal and tax systems",
+        "Language and cultural differences",
+        "Property management from abroad"
+      ],
+      "best_for": [
+        "Investors seeking higher yields",
+        "Beachfront property enthusiasts",
+        "Those comfortable with international investment",
+        "Diversification seekers",
+        "Vacation home owners who also want income"
+      ],
+      "top_locations": {
+        "tulum": {
+          "highlights": "Eco-tourism hub, bohemian atmosphere, pristine beaches",
+          "roi_range": "11-13%",
+          "price_range": "$280,000 - $500,000",
+          "occupancy": "80-85%"
+        },
+        "playa_del_carmen": {
+          "highlights": "Cosmopolitan downtown, excellent dining, central location",
+          "roi_range": "9-11%",
+          "price_range": "$350,000 - $700,000",
+          "occupancy": "75-82%"
+        },
+        "puerto_vallarta": {
+          "highlights": "Established tourism, Pacific coast, cultural richness",
+          "roi_range": "10-12%",
+          "price_range": "$320,000 - $600,000",
+          "occupancy": "78-83%"
+        }
+      }
+    },
+    "usa": {
+      "advantages": [
+        "Stable legal and financial systems",
+        "Easier financing options",
+        "No foreign ownership restrictions",
+        "Familiar tax and legal framework",
+        "Strong property rights protection",
+        "Established rental markets"
+      ],
+      "considerations": [
+        "Generally lower ROI (7-9%)",
+        "Higher property prices",
+        "More competitive markets",
+        "Higher property taxes",
+        "State-specific regulations"
+      ],
+      "best_for": [
+        "Conservative investors seeking stability",
+        "Those preferring domestic investments",
+        "Investors wanting easier property management",
+        "Those seeking portfolio balance",
+        "Retirement property planners"
+      ],
+      "top_locations": {
+        "lake_norman_nc": {
+          "highlights": "Waterfront living, family-friendly, outdoor recreation",
+          "roi_range": "7-9%",
+          "price_range": "$600,000 - $1,500,000",
+          "occupancy": "70-78%"
+        },
+        "miami_fl": {
+          "highlights": "International appeal, year-round demand, urban luxury",
+          "roi_range": "7-8.5%",
+          "price_range": "$500,000 - $1,200,000",
+          "occupancy": "72-80%"
+        }
+      }
+    }
+  },
+  "investment_strategies": {
+    "diversification": {
+      "strategy": "Split investment between Mexico (higher yield) and USA (stability)",
+      "benefits": [
+        "Risk mitigation across markets",
+        "Balance of high returns and stability",
+        "Currency diversification",
+        "Seasonal optimization (different peak seasons)"
+      ],
+      "recommended_split": "60% Mexico, 40% USA or 50/50 based on risk tolerance"
+    },
+    "high_yield_focus": {
+      "strategy": "Concentrate on Mexican beachfront properties",
+      "benefits": [
+        "Maximum ROI potential",
+        "Strong appreciation prospects",
+        "High rental demand",
+        "Lower entry costs"
+      ],
+      "considerations": "Requires comfort with international investment complexities"
+    },
+    "stability_focus": {
+      "strategy": "Focus on US properties with steady returns",
+      "benefits": [
+        "Predictable income streams",
+        "Minimal legal complexity",
+        "Easier management",
+        "Strong appreciation in select markets"
+      ],
+      "considerations": "Lower immediate returns but excellent long-term value"
+    }
+  }
+}
