@@ -334,3 +334,40 @@
     inset: -1px;
   }
 }
+
+/* Chat message text wrapping - ensures messages fit within chatbot container */
+@layer components {
+  .chat-container {
+    padding: 16px;
+    overflow-y: auto;
+    max-width: 100%;
+  }
+  
+  .message {
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    white-space: normal !important;
+    max-width: 100%;
+    margin-bottom: 12px;
+  }
+  
+  .bot-message {
+    background: hsl(var(--card));
+    padding: 12px 16px;
+    border-radius: 18px 18px 18px 4px;
+    max-width: 85%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  .user-message {
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    padding: 12px 16px;
+    border-radius: 18px 18px 4px 18px;
+    max-width: 85%;
+    margin-left: auto;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+}
