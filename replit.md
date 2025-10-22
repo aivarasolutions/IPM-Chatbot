@@ -23,12 +23,14 @@ The design adheres to a professional real estate theme with a primary deep profe
 - **Property Comparison Tool:** A dedicated page `/compare` allows side-by-side comparison of up to 3 properties.
 - **API Documentation:** Comprehensive interactive API docs at `/api-docs` including widget integration guide and endpoint details.
 - **Analytics Dashboard:** An admin page at `/analytics` provides key metrics like total leads, conversion rates, engagement, and various demographic distributions.
+- **Embeddable Chat Widget:** Floating chat bubble widget (`public/widget.js`) that can be embedded on external websites (www.ipm.services), opens a 380px×600px popup with full chat functionality, customizable theme/language/position, with responsive layout optimizations for narrow widget mode.
 
 **System Design Choices:**
 - **AI System Prompt:** Configured to act as an expert IPM representative, emphasizing USA-based expertise and guiding investors.
 - **Lead Qualification Triggers:** AI automatically suggests lead capture based on keywords indicating investment intent, budget, timeline, or contact requests.
 - **Property Matching:** AI extracts relevant properties based on user-mentioned locations, features, country preferences, and budget ranges.
 - **CORS Configuration:** API accepts requests from specified IPM domains, localhost, and Replit domains.
+- **Widget Embedded Mode:** Detects `?embedded=true` URL parameter to hide header/sidebar, apply compact layout with reduced padding (px-3 py-4), smaller text sizes, and enforced width constraints to fit 380px widget. Message bubbles constrained to 85% width (303px max) with word-break: break-all to prevent horizontal overflow.
 
 ## External Dependencies
 - **OpenAI GPT-4o-mini**: For AI-powered conversational capabilities.

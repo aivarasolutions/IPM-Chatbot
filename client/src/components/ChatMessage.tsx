@@ -24,8 +24,8 @@ export function ChatMessage({ role, content, timestamp }: ChatMessageProps) {
   return (
     <div
       className={cn(
-        "flex gap-3 mb-4 max-w-full",
-        isUser ? "ml-auto flex-row-reverse" : "mr-auto"
+        "flex gap-3 mb-4 w-full",
+        isUser ? "justify-end flex-row-reverse" : "justify-start"
       )}
       data-testid={`message-${role}`}
     >
@@ -39,18 +39,21 @@ export function ChatMessage({ role, content, timestamp }: ChatMessageProps) {
 
       <div
         className={cn(
-          "rounded-2xl px-4 py-3 shadow-sm max-w-[85%]",
+          "rounded-2xl px-4 py-3 shadow-sm shrink",
           isUser
             ? "bg-primary text-primary-foreground"
             : "bg-card border border-card-border"
         )}
         style={{
+          maxWidth: '85%',
+          flexGrow: 0,
+          flexShrink: 1,
           wordWrap: 'break-word',
-          overflowWrap: 'break-word',
-          wordBreak: 'break-word'
+          overflowWrap: 'anywhere',
+          wordBreak: 'break-all'
         }}
       >
-        <p className="text-sm leading-relaxed whitespace-pre-wrap break-words">{content}</p>
+        <p className="text-sm leading-relaxed" style={{ whiteSpace: 'pre-wrap' }}>{content}</p>
         {formatTimestamp() && (
           <p className={cn(
             "text-xs mt-2 opacity-70",

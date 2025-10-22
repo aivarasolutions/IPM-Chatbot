@@ -28,8 +28,8 @@ export function ChatInput({ onSendMessage, disabled, placeholder = "Ask about in
   };
 
   return (
-    <form onSubmit={handleSubmit} className="border-t border-border bg-background p-4">
-      <div className="flex gap-2 max-w-5xl mx-auto">
+    <form onSubmit={handleSubmit} className="border-t border-border bg-background p-3">
+      <div className="flex gap-2 w-full">
         <Textarea
           data-testid="input-message"
           value={message}
@@ -37,7 +37,7 @@ export function ChatInput({ onSendMessage, disabled, placeholder = "Ask about in
           onKeyDown={handleKeyDown}
           placeholder={placeholder}
           disabled={disabled}
-          className="min-h-[44px] max-h-32 resize-none rounded-xl"
+          className="min-h-[44px] max-h-32 resize-none rounded-xl flex-1"
           rows={1}
         />
         <Button

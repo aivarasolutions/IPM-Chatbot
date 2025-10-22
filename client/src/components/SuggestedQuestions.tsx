@@ -12,7 +12,7 @@ export function SuggestedQuestions({ questions, onSelectQuestion, disabled }: Su
 
   return (
     <div className="border-t border-border bg-muted/30 p-3">
-      <div className="max-w-5xl mx-auto">
+      <div className="w-full">
         <p className="text-xs text-muted-foreground mb-2 px-1">Suggested questions:</p>
         <ScrollArea className="w-full">
           <div className="flex gap-2 pb-2">
@@ -24,7 +24,7 @@ export function SuggestedQuestions({ questions, onSelectQuestion, disabled }: Su
                 size="sm"
                 onClick={() => onSelectQuestion(question)}
                 disabled={disabled}
-                className="whitespace-nowrap shrink-0 rounded-full"
+                className="whitespace-nowrap shrink-0 rounded-full text-xs max-w-[200px] overflow-hidden text-ellipsis"
               >
                 {question}
               </Button>

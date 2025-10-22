@@ -31,6 +31,9 @@ export default function ChatPage() {
   const [showLeadForm, setShowLeadForm] = useState(false);
   const [featuredProperties, setFeaturedProperties] = useState<Property[]>([]);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  
+  // Detect if running in embedded/widget mode
+  const isEmbedded = new URLSearchParams(window.location.search).get('embedded') === 'true';
 
   useEffect(() => {
     const id = sessionId || `session-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
@@ -125,7 +128,8 @@ export default function ChatPage() {
 
   return (
     <div className="flex flex-col h-screen bg-background">
-      {/* Header */}
+      {/* Header - Hidden in embedded mode */}
+      {!isEmbedded && (
       <header className="border-b border-border bg-background/95 backdrop-blur-sm sticky top-0 z-10">
         <div className="flex items-center justify-between px-4 py-3 max-w-7xl mx-auto">
           <div className="flex items-center gap-3">
@@ -177,10 +181,12 @@ export default function ChatPage() {
           </div>
         </div>
       </header>
+      )}
 
       {/* Main Content */}
       <div className="flex-1 flex overflow-hidden">
-        {/* Sidebar - Desktop */}
+        {/* Sidebar - Desktop - Hidden in embedded mode */}
+        {!isEmbedded && (
         <aside className="hidden md:block w-80 border-r border-border bg-muted/30 overflow-y-auto">
           <div className="p-4 space-y-4">
             <div className="flex items-center justify-between mb-3">
@@ -207,30 +213,31 @@ export default function ChatPage() {
             </div>
           </div>
         </aside>
+        )}
 
         {/* Chat Area */}
-        <main className="flex-1 flex flex-col">
-          <ScrollArea className="flex-1">
-            <div className="max-w-5xl mx-auto px-4 py-6">
+        <main className="flex-1 flex flex-col overflow-hidden">
+          <ScrollArea className="flex-1 w-full">
+            <div className={isEmbedded ? "w-full px-3 py-4" : "max-w-5xl mx-auto px-4 py-6"} style={isEmbedded ? { maxWidth: '100vw', overflowX: 'hidden' } : {}}>
               {messages.length === 0 ? (
-                <div className="text-center py-12">
-                  <div className="h-16 w-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                    <Building2 className="h-8 w-8 text-primary" />
+                <div className="text-center py-8">
+                  <div className={isEmbedded ? "h-12 w-12 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4" : "h-16 w-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4"}>
+                    <Building2 className={isEmbedded ? "h-6 w-6 text-primary" : "h-8 w-8 text-primary"} />
                   </div>
-                  <h2 className="font-serif font-semibold text-2xl mb-2">{t('welcome.title')}</h2>
-                  <p className="text-muted-foreground max-w-md mx-auto mb-8">
+                  <h2 className={isEmbedded ? "font-serif font-semibold text-lg mb-2" : "font-serif font-semibold text-2xl mb-2"}>{t('welcome.title')}</h2>
+                  <p className={isEmbedded ? "text-muted-foreground text-sm mb-4 px-2" : "text-muted-foreground max-w-md mx-auto mb-8"}>
                     {t('welcome.subtitle')}
                   </p>
-                  <div className="grid gap-3 sm:grid-cols-2 max-w-2xl mx-auto">
+                  <div className={isEmbedded ? "flex flex-col gap-2" : "grid gap-3 sm:grid-cols-2 max-w-2xl mx-auto"}>
                     {suggestedQuestions.map((q, idx) => (
                       <Button
                         key={idx}
                         variant="outline"
-                        className="justify-start text-left h-auto py-3 px-4"
+                        className={isEmbedded ? "justify-start text-left h-auto py-2 px-3 text-xs" : "justify-start text-left h-auto py-3 px-4"}
                         onClick={() => handleSendMessage(q)}
                         data-testid={`button-welcome-${idx}`}
                       >
-                        {q}
+                        <span className="break-words whitespace-normal">{q}</span>
                       </Button>
                     ))}
                   </div>
