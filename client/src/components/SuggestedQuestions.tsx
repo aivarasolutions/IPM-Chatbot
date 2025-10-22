@@ -24,7 +24,14 @@ export function SuggestedQuestions({ questions, onSelectQuestion, disabled }: Su
                 size="sm"
                 onClick={() => onSelectQuestion(question)}
                 disabled={disabled}
-                className="whitespace-nowrap shrink-0 rounded-full text-xs max-w-[200px] overflow-hidden text-ellipsis"
+                className="shrink-0 rounded-full text-xs px-4 max-w-[280px]"
+                style={{
+                  whiteSpace: 'normal',
+                  textAlign: 'left',
+                  lineHeight: '1.4',
+                  minHeight: '32px',
+                  height: 'auto'
+                }}
               >
                 {question}
               </Button>

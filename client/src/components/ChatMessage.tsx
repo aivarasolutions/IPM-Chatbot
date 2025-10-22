@@ -1,6 +1,8 @@
 import { cn } from "@/lib/utils";
 import { Building2, User } from "lucide-react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 interface ChatMessageProps {
   role: "user" | "assistant";
@@ -53,7 +55,27 @@ export function ChatMessage({ role, content, timestamp }: ChatMessageProps) {
           wordBreak: 'break-all'
         }}
       >
-        <p className="text-sm leading-relaxed" style={{ whiteSpace: 'pre-wrap' }}>{content}</p>
+        <div className={cn(
+          "text-sm leading-relaxed prose prose-sm max-w-none",
+          isUser ? "prose-invert" : "dark:prose-invert",
+          "prose-headings:font-serif prose-headings:font-semibold prose-headings:mt-3 prose-headings:mb-2",
+          "prose-p:my-1.5 prose-p:leading-relaxed",
+          "prose-ul:my-1 prose-ol:my-1 prose-li:my-0.5",
+          "prose-strong:font-semibold",
+          "prose-code:text-xs prose-code:bg-muted/30 prose-code:px-1 prose-code:py-0.5 prose-code:rounded",
+          isUser ? "prose-strong:text-primary-foreground" : "prose-strong:text-foreground"
+        )}>
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
+            components={{
+              p: ({node, ...props}) => <p className="mb-2 last:mb-0" {...props} />,
+              ul: ({node, ...props}) => <ul className="list-disc list-inside space-y-0.5" {...props} />,
+              ol: ({node, ...props}) => <ol className="list-decimal list-inside space-y-0.5" {...props} />,
+            }}
+          >
+            {content}
+          </ReactMarkdown>
+        </div>
         {formatTimestamp() && (
           <p className={cn(
             "text-xs mt-2 opacity-70",
