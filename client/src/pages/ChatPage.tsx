@@ -23,15 +23,17 @@ export default function ChatPage() {
   const [messages, setMessages] = useState<ChatMessageType[]>([]);
   const [sessionId, setSessionId] = useState<string>("");
   const [suggestedQuestions, setSuggestedQuestions] = useState<string[]>([
-    "Tell me about beachfront properties in Tulum",
-    "What are the tax implications for US investors in Mexico?",
-    "How does the fideicomiso system work?",
-    "What ROI can I expect from Mexican properties?",
+    "How can IPM help me get more reservations?",
+    "What is included in the 10%–20% management tiers?",
+    "How does IPM market my property?",
+    "Can IPM manage my Airbnb or Booking.com listing?",
   ]);
   const [showLeadForm, setShowLeadForm] = useState(false);
   const [featuredProperties, setFeaturedProperties] = useState<Property[]>([]);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  
+  const userQuestionCount = useRef(0);
+  const ctaShown = useRef(false);
+
   // Detect if running in embedded/widget mode
   const isEmbedded = new URLSearchParams(window.location.search).get('embedded') === 'true';
 
@@ -85,8 +87,20 @@ export default function ChatPage() {
         setTimeout(() => setShowLeadForm(true), 1000);
       }
 
-      if (data.properties && data.properties.length > 0) {
-        setFeaturedProperties(data.properties.slice(0, 3));
+      // After the 3rd user question, gently guide toward contacting IPM
+      if (userQuestionCount.current >= 3 && !ctaShown.current) {
+        ctaShown.current = true;
+        setTimeout(() => {
+          const ctaMessage: ChatMessageType = {
+            id: `msg-cta-${Date.now()}`,
+            sessionId,
+            role: "assistant",
+            content: `It looks like you have a lot of great questions about property management — that's a great sign!\n\nFor the most personalized guidance, I'd recommend reaching out to the IPM team directly. They can review your property and recommend the right management plan for you.\n\n**Ready to take the next step?**\n\n📧 **Email:** info@ipm.services\n🌐 **Website:** [Contact IPM](https://www.ipm.services/contact)\n\nFeel free to keep asking questions here too — I'm happy to help!`,
+            timestamp: new Date(),
+            metadata: null,
+          };
+          setMessages((prev) => [...prev, ctaMessage]);
+        }, 800);
       }
     },
   });
@@ -114,6 +128,7 @@ export default function ChatPage() {
   });
 
   const handleSendMessage = (message: string) => {
+    userQuestionCount.current += 1;
     const userMessage: ChatMessageType = {
       id: `msg-${Date.now()}`,
       sessionId,
@@ -272,6 +287,7 @@ export default function ChatPage() {
           <ChatInput
             onSendMessage={handleSendMessage}
             disabled={chatMutation.isPending}
+            placeholder={t('chat.inputPlaceholder')}
           />
         </main>
       </div>

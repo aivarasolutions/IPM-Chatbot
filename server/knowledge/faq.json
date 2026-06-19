@@ -1,52 +1,52 @@
 {
-  "legal_questions": {
-    "fideicomiso": {
-      "question": "How does the fideicomiso system work for US buyers?",
-      "answer": "The fideicomiso is a secure, time-tested bank trust system that IPM has helped hundreds of US clients navigate successfully. As a Mexican bank trust, it gives you all ownership rights (sell, rent, inherit, improve) while a Mexican bank holds the title as trustee. This system was created specifically for foreign property ownership in restricted zones (within 50km of coastline or 100km of borders). IPM works with trusted Mexican attorneys to ensure proper setup and ongoing compliance. The trust term is 50 years and is renewable indefinitely. You maintain complete control and all economic benefits of ownership."
+  "management_questions": {
+    "what_does_ipm_do": {
+      "question": "What does IPM do?",
+      "answer": "International Property Management (IPM) is a professional vacation rental property management company. We help property owners get more reservations, better guest reviews, and stronger revenue by handling everything from listing optimization and guest communication to cleaning coordination, maintenance, and owner reporting. We operate in Playa del Carmen, Tulum, Cancun, Puerto Rico, and select USA and international markets."
     },
-    "us_tax_reporting": {
-      "question": "What are the tax implications for US citizens owning rental property in Mexico?",
-      "answer": "As a US-based company with extensive cross-border experience, IPM guides clients through all tax implications. US citizens must report Mexican rental income on their US tax returns (IRS Form 1040 Schedule E). Mexico typically withholds 25% on rental income, but this can be optimized through proper structuring and may qualify for foreign tax credits on your US return. You can often credit Mexican taxes paid against US tax liability. IPM provides multi-currency financial reporting to simplify tax filing. We recommend working with a CPA experienced in international real estate, and we can connect you with our trusted network of tax professionals."
+    "management_fee_tiers": {
+      "question": "What are IPM's management fees?",
+      "answer": "IPM offers three flexible management tiers: 10% for owners who need basic listing support and reservation coordination; 15% for active management including guest messaging, listing optimization, pricing recommendations, cleaning and maintenance coordination, and monthly owner updates; 20% for full-service management including everything in the 15% tier plus dynamic pricing strategy, marketing support, 24/7 guest support, and full reservation management. The right tier depends on your property and how involved you want to be."
     },
-    "foreign_ownership_restrictions": {
-      "question": "Can US citizens own property directly in Mexico?",
-      "answer": "US citizens cannot own property directly in Mexico's restricted zones (coastal and border areas where most vacation properties are located), but the fideicomiso system provides equivalent ownership rights. For properties outside restricted zones, direct ownership is possible. IPM specializes in navigating these requirements for US and Canadian investors, ensuring you have the same practical ownership benefits regardless of the legal structure. We handle all the complexities so you can focus on enjoying your investment returns."
+    "getting_more_reservations": {
+      "question": "How can IPM help me get more reservations?",
+      "answer": "IPM helps increase your bookings through professional listing optimization (better titles, descriptions, and photos), multi-platform distribution across Airbnb, Booking.com, VRBO, Expedia, and Google Vacation Rentals, dynamic pricing strategy to stay competitive and maximize revenue, faster response times to improve booking conversion, and a review improvement strategy that builds your property's ranking over time. Results depend on the property, market, season, and pricing, but IPM's approach is designed to consistently improve visibility and booking performance."
     },
-    "canadian_investors": {
-      "question": "Are the requirements different for Canadian investors?",
-      "answer": "Canadian investors face the same fideicomiso requirements as US citizens in Mexico's restricted zones. However, Canada has a tax treaty with Mexico that can provide certain benefits. Canadian investors must report Mexican rental income to the CRA (Canada Revenue Agency). IPM has extensive experience with both US and Canadian investors and can guide you through the specific requirements for Canadian citizens, including tax treaty benefits and proper structuring."
-    }
-  },
-  "investment_guidance": {
-    "financing_options": {
-      "question": "What financing options are available for international property purchases?",
-      "answer": "IPM helps clients navigate several financing options: 1) US bank international loans (typically requiring 40-50% down, higher rates), 2) Developer financing in Mexico (often 30-40% down, competitive rates, built into purchase), 3) Home equity from US properties, 4) International lenders specializing in Mexico real estate, 5) Cash purchases (many investors prefer this for simplicity). We work with a network of lenders experienced in cross-border transactions and can help you compare options based on your situation."
+    "platforms_supported": {
+      "question": "Can IPM manage my Airbnb or Booking.com listing?",
+      "answer": "Yes. IPM manages listings across all major booking platforms including Airbnb, Booking.com, VRBO, Expedia, and Google Vacation Rentals. We handle listing creation, optimization, calendar management, pricing updates, and guest communication across all platforms so you don't have to."
     },
-    "roi_expectations": {
-      "question": "What ROI can I realistically expect?",
-      "answer": "IPM's managed properties achieve 8-12% annual ROI depending on location and property type. Mexican properties typically yield 10-12% (Tulum, Playa del Carmen, Puerto Vallarta) with 75-85% occupancy rates. US properties average 7-9% (Lake Norman, Miami) with 70-80% occupancy. These figures include rental income minus management fees, maintenance, and taxes. ROI varies based on property price, location, season optimization, and management quality. IPM's international marketing across Airbnb, Booking.com, and other platforms maximizes occupancy. We provide detailed ROI projections for specific properties you're considering."
+    "owner_portal": {
+      "question": "How does the owner portal work?",
+      "answer": "The IPM owner portal gives you visibility into your property's performance at any time. Through the portal, you can view your reservation calendar, track revenue and earnings, review cleaning and maintenance logs, monitor guest reviews, and access performance reports. It's designed to keep you informed without requiring you to be involved in day-to-day management."
     },
-    "currency_risk": {
-      "question": "How do I manage currency exchange risk?",
-      "answer": "Currency fluctuations between USD and MXN can impact your investment. IPM helps mitigate this through: 1) Rental contracts in USD (common for international vacation rentals), 2) Strategic timing of currency exchanges, 3) Multi-currency bank accounts, 4) Hedging strategies for large transactions, 5) Taking advantage of favorable exchange rates. Currently, USD strength provides buying advantages in Mexico. We provide multi-currency financial reporting and can connect you with currency specialists for larger investments. Many investors view peso fluctuations as creating buying opportunities rather than just risks."
+    "owner_reports": {
+      "question": "What reports do property owners receive?",
+      "answer": "Property owners receive monthly performance reports that include reservation summaries, revenue and earnings breakdowns, occupancy rates, guest reviews, and any maintenance or cleaning activity. Owners in the 15% and 20% tiers receive more detailed reporting and updates. All owners also have access to the owner portal for real-time data."
     },
-    "property_management_distance": {
-      "question": "How does property management work when I'm in the US?",
-      "answer": "This is IPM's core expertise - managing international properties for US-based owners. Our comprehensive service includes: 24/7 multilingual guest support, professional maintenance and cleaning, dynamic pricing optimization, global marketing across all major platforms, multi-currency financial reporting with monthly statements, legal and tax compliance, emergency response, and quality inspections. You receive detailed monthly reports and can monitor your property performance through our owner portal. We handle everything from guest check-in to maintenance coordination, so you never need to be physically present. Our 10+ years of experience means we've solved every challenge that can arise in cross-border property management."
-    }
-  },
-  "process_questions": {
-    "buying_process": {
-      "question": "What's the process for buying property in Mexico as a US citizen?",
-      "answer": "IPM guides you through each step: 1) Property search and selection (we help identify properties matching your goals), 2) Make an offer (we help negotiate), 3) Hire a notario público (required Mexican notary/attorney - we have trusted partners), 4) Set up fideicomiso trust with Mexican bank (we coordinate), 5) Due diligence (title search, property inspection), 6) Sign purchase agreement, 7) Transfer funds (we help with international wire transfers), 8) Close transaction and receive property, 9) Set up property management with IPM. The process typically takes 60-90 days. We coordinate with our network of attorneys, banks, and notarios to ensure a smooth transaction."
+    "cleaning_maintenance": {
+      "question": "Do you help with cleaning and maintenance?",
+      "answer": "Yes. IPM coordinates professional cleaning between guest stays and manages maintenance requests as they arise. For the 15% and 20% management tiers, cleaning and maintenance coordination is included. IPM works with trusted local cleaning and maintenance teams to ensure your property is always guest-ready and well-maintained."
     },
-    "timeline": {
-      "question": "How long does it take to start earning rental income?",
-      "answer": "Once you own the property, IPM can begin generating rental income quickly: 1-2 weeks for property setup (professional photography, listing creation, pricing strategy), 2-4 weeks to secure first bookings (depending on season), full optimization within 2-3 months (as listings gain reviews and ranking). Mexico's year-round tourism means consistent income opportunities. We often secure bookings during the closing process so income begins immediately upon ownership transfer. Our global marketing reach and dynamic pricing ensure you hit optimal occupancy rates as quickly as possible."
+    "guest_communication": {
+      "question": "How does IPM handle guest communication?",
+      "answer": "IPM handles all guest communication from the initial inquiry through checkout. This includes answering questions before booking, confirming reservations, sending check-in instructions, responding to during-stay needs, and following up after checkout to encourage positive reviews. Our team provides 24/7 guest support in the full-service 20% tier to ensure guests always have help when they need it."
     },
-    "ongoing_costs": {
-      "question": "What are the ongoing costs of ownership?",
-      "answer": "IPM provides transparent cost analysis: Property management (typically 15-20% of rental income), HOA/condo fees (varies by property, $100-500/month), Property taxes in Mexico (much lower than US, typically 0.1-0.2% of property value annually), Utilities (usually covered by rental income), Fideicomiso renewal (every 50 years, ~$500-1000), Maintenance reserve (recommended 5-10% of rental income), Insurance (property and liability, ~$800-2000/year). US properties have higher property taxes (1-2% of value) but no fideicomiso costs. We help you budget accurately with detailed cost projections for any property you're considering."
+    "dynamic_pricing": {
+      "question": "What is dynamic pricing and how does it work?",
+      "answer": "Dynamic pricing is a strategy where your nightly rates are adjusted automatically based on demand, season, local events, and competitor pricing. IPM uses dynamic pricing tools and expertise to ensure your property is priced competitively — not too high to lose bookings, not too low to leave money on the table. Dynamic pricing is included in the 20% full-service tier and available as a recommendation in the 15% active management tier."
+    },
+    "getting_started": {
+      "question": "How do I get started with IPM?",
+      "answer": "Getting started is simple. Reach out to IPM at info@ipm.services or visit https://www.ipm.services/contact. The IPM team will review your property, understand your goals, and recommend the management tier that makes the most sense for you. From there, IPM handles onboarding, listing setup, and getting your property in front of guests."
+    },
+    "income_guarantee": {
+      "question": "Can you guarantee how much income I will earn?",
+      "answer": "No property management company can guarantee specific income. IPM helps improve visibility, pricing, guest experience, and booking performance, but results depend on the property, market, season, pricing, and availability. What IPM can guarantee is a professional, consistent approach to managing your property and maximizing its potential."
+    },
+    "locations_served": {
+      "question": "What locations does IPM serve?",
+      "answer": "IPM currently operates in Playa del Carmen, Tulum, Cancun, and the broader Riviera Maya region in Mexico, as well as Puerto Rico. IPM also supports select USA markets and other international properties. Contact IPM to confirm whether your specific location is covered."
     }
   }
 }

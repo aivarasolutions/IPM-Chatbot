@@ -1,75 +1,163 @@
 {
   "company": {
     "name": "International Property Management (IPM)",
+    "website": "https://www.ipm.services",
+    "contact_email": "info@ipm.services",
+    "contact_page": "https://www.ipm.services/contact",
     "headquarters": "United States",
-    "experience_years": 10,
-    "properties_managed": 30,
     "specialization": [
-      "International vacation rental management",
-      "Real estate sales",
-      "Cross-border investment consultation"
+      "Vacation rental property management",
+      "Owner portal support",
+      "Multi-platform listing optimization",
+      "Revenue optimization and dynamic pricing",
+      "Guest communication and 24/7 support",
+      "Cleaning and maintenance coordination",
+      "Owner reporting and performance analytics"
     ],
     "primary_markets": {
       "mexico": [
-        "Riviera Maya (Playa del Carmen, Tulum, Cancun)",
-        "Puerto Vallarta",
-        "Other premium Mexican resort destinations"
+        "Playa del Carmen",
+        "Tulum",
+        "Cancun",
+        "Riviera Maya"
       ],
-      "usa": [
-        "Lake Norman, North Carolina",
-        "Miami, Florida"
+      "usa_and_international": [
+        "Puerto Rico",
+        "United States (select markets)",
+        "International properties where applicable"
       ]
     }
   },
-  "key_statistics": {
-    "average_occupancy": "75-85%",
-    "annual_roi_range": "8-12%",
-    "occupancy_consistency": "year-round",
-    "property_specialization": ["Large family properties", "Waterfront locations"],
-    "expertise": ["Cross-border real estate investment", "International property management"]
+  "management_fee_tiers": {
+    "overview": "IPM offers flexible management tiers from 10% to 20% of rental income, depending on the level of support needed.",
+    "disclaimer": "IPM helps improve visibility, pricing, guest experience, and booking performance, but results depend on the property, market, season, pricing, and availability.",
+    "tiers": {
+      "10_percent": {
+        "name": "Basic Support",
+        "fee": "10% of rental income",
+        "best_for": "Owners who only need basic support or partial management",
+        "includes": [
+          "Listing support",
+          "Reservation coordination",
+          "Owner guidance and consultation",
+          "Limited guest communication",
+          "Basic reporting"
+        ]
+      },
+      "15_percent": {
+        "name": "Active Management",
+        "fee": "15% of rental income",
+        "best_for": "Owners who want more active management and stronger support",
+        "includes": [
+          "Guest messaging and communication",
+          "Reservation support and management",
+          "Listing optimization",
+          "Calendar coordination",
+          "Pricing recommendations",
+          "Cleaning coordination",
+          "Maintenance coordination",
+          "Monthly owner updates and reports"
+        ]
+      },
+      "20_percent": {
+        "name": "Full-Service Management",
+        "fee": "20% of rental income",
+        "best_for": "Owners who want complete hands-off full-service property management",
+        "includes": [
+          "Full guest communication from inquiry to checkout",
+          "Full reservation management",
+          "Listing optimization across all major booking platforms",
+          "Dynamic pricing strategy",
+          "Cleaning and maintenance coordination",
+          "Detailed owner reporting and analytics",
+          "Revenue improvement strategy",
+          "Marketing support",
+          "24/7 guest support",
+          "Higher-touch, premium management"
+        ]
+      }
+    }
   },
   "services": {
     "property_management": {
-      "description": "Cross-border property management with 75-85% occupancy rates",
-      "features": [
-        "International revenue optimization",
-        "Dynamic pricing strategies",
-        "24/7 multilingual guest support",
-        "Professional maintenance services",
-        "Multi-currency financial reporting",
-        "International wire transfers"
+      "description": "IPM provides professional vacation rental property management designed to help owners get more reservations, better reviews, and stronger revenue.",
+      "key_services": [
+        "Vacation rental setup and onboarding",
+        "Listing creation and optimization",
+        "Multi-platform distribution",
+        "Dynamic pricing strategy",
+        "Guest communication and vetting",
+        "Check-in support and coordination",
+        "Cleaning coordination",
+        "Maintenance coordination",
+        "Owner reporting and performance tracking",
+        "Revenue optimization",
+        "24/7 guest support"
       ]
     },
     "marketing": {
-      "platforms": ["Airbnb", "Booking.com", "Expedia", "VRBO"],
-      "reach": "Global marketing across international booking platforms",
-      "strategy": "Multi-platform optimization for maximum visibility"
-    },
-    "legal_compliance": {
-      "jurisdictions": ["US", "Mexico"],
-      "services": [
-        "Legal compliance across jurisdictions",
-        "Fideicomiso setup assistance",
-        "Tax optimization for international property owners",
-        "Attorney network for cross-border transactions"
+      "description": "IPM markets properties across all major booking platforms to maximize visibility and bookings.",
+      "platforms": [
+        "Airbnb",
+        "Booking.com",
+        "VRBO",
+        "Expedia",
+        "Google Vacation Rentals"
+      ],
+      "strategy": [
+        "Professional listing optimization with strong titles and descriptions",
+        "Better photos and presentation guidance",
+        "Multi-platform distribution for maximum reach",
+        "SEO-friendly property pages where applicable",
+        "Dynamic pricing strategy to maximize revenue per booking",
+        "Review improvement strategy to build trust and ranking",
+        "Faster response times to improve conversion",
+        "Social media and content marketing when included in plan"
       ]
     },
-    "investor_support": {
-      "services": [
-        "Investment analysis and ROI projections",
-        "Cross-border financing guidance",
-        "Currency management consultation",
-        "Market insights and trends",
-        "Property acquisition assistance"
+    "owner_portal": {
+      "description": "Property owners have access to an owner portal where they can track performance, reservations, reports, and earnings.",
+      "features": [
+        "Reservation calendar and booking overview",
+        "Revenue and earnings reports",
+        "Cleaning and maintenance logs",
+        "Guest review tracking",
+        "Performance metrics and occupancy data"
+      ]
+    },
+    "guest_support": {
+      "description": "IPM provides professional guest communication and support to ensure great reviews and repeat bookings.",
+      "includes": [
+        "Inquiry response and pre-booking communication",
+        "Booking confirmation and guest onboarding",
+        "Check-in instructions and support",
+        "During-stay support and issue resolution",
+        "Checkout communication",
+        "Review management"
       ]
     }
   },
+  "getting_started": {
+    "process": [
+      "Contact IPM to schedule a property review",
+      "IPM evaluates the property and recommends the right management tier",
+      "Onboarding: property setup, photography guidance, listing creation",
+      "Listings go live across Airbnb, Booking.com, VRBO, Expedia, and more",
+      "IPM manages guests, pricing, cleaning, maintenance, and reporting",
+      "Owner receives monthly reports and can track performance via the owner portal"
+    ],
+    "contact": {
+      "email": "info@ipm.services",
+      "website": "https://www.ipm.services/contact"
+    }
+  },
   "unique_value_propositions": [
-    "USA-based company with deep international expertise",
-    "10+ years navigating cross-border complexities",
-    "Proven track record with US and Canadian investors",
-    "Cultural bridge between US investors and international markets",
-    "Full-service management eliminating investor burden",
-    "Expert guidance on legal and tax implications"
+    "Full-service vacation rental management with no hassle for owners",
+    "Multi-platform listing optimization to maximize bookings",
+    "Dynamic pricing strategy to improve revenue",
+    "Professional guest communication and 24/7 support",
+    "Transparent owner reporting so you always know how your property performs",
+    "Flexible management tiers from 10% to 20% based on your needs",
+    "Experienced team with deep knowledge of vacation rental markets in Mexico, Caribbean, and USA"
   ]
 }

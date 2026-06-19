@@ -6,12 +6,12 @@ const resources = {
   en: {
     translation: {
       // Header
-      "app.title": "IPM Chatbot",
-      "app.subtitle": "International Property Management",
+      "app.title": "IPM Property Expert",
+      "app.subtitle": "Vacation Rental Management",
       
       // Welcome Screen
-      "welcome.title": "Welcome to IPM",
-      "welcome.subtitle": "Your trusted partner for international property investment. Ask me anything about cross-border real estate, investment opportunities, or property management.",
+      "welcome.title": "IPM Property Management Expert",
+      "welcome.subtitle": "Ask about vacation rental management, owner earnings, marketing, and property performance.",
       
       // Property Card
       "property.priceRange": "Price Range",
@@ -20,24 +20,24 @@ const resources = {
       "property.loading": "Properties loading...",
       
       // Chat
-      "chat.inputPlaceholder": "Ask about international property investment...",
+      "chat.inputPlaceholder": "Ask about property management, rentals, or getting started...",
       "chat.send": "Send",
       "chat.suggestedQuestions": "Suggested questions:",
       
       // Lead Form
-      "lead.title": "Investment Inquiry",
-      "lead.subtitle": "Help us understand your investment goals",
+      "lead.title": "Property Management Inquiry",
+      "lead.subtitle": "Tell us about your property and goals",
       "lead.step1Title": "Contact Information",
-      "lead.step2Title": "Investment Details",
-      "lead.step3Title": "Investment Preferences",
+      "lead.step2Title": "Property Details",
+      "lead.step3Title": "Management Preferences",
       "lead.name": "Full Name",
       "lead.email": "Email Address",
       "lead.phone": "Phone Number",
-      "lead.citizenship": "Citizenship",
-      "lead.budget": "Investment Budget",
-      "lead.experience": "Investment Experience",
-      "lead.location": "Preferred Location",
-      "lead.timeline": "Investment Timeline",
+      "lead.citizenship": "Country of Residence",
+      "lead.budget": "Property Value (Estimate)",
+      "lead.experience": "Owner Experience",
+      "lead.location": "Property Location",
+      "lead.timeline": "Readiness to Start",
       "lead.notes": "Additional Notes",
       "lead.next": "Next",
       "lead.back": "Back",
@@ -45,15 +45,15 @@ const resources = {
       "lead.cancel": "Cancel",
       
       // Experience Levels
-      "experience.firstTime": "First Time Investor",
-      "experience.some": "Some Experience",
-      "experience.extensive": "Extensive Experience",
+      "experience.firstTime": "First Time Owner",
+      "experience.some": "Currently Self-Managing",
+      "experience.extensive": "Working with Another Manager",
       
       // Timeline
-      "timeline.3months": "Within 3 months",
-      "timeline.3to6": "3-6 months",
-      "timeline.6to12": "6-12 months",
-      "timeline.exploring": "Just exploring",
+      "timeline.3months": "Ready to start now",
+      "timeline.3to6": "Within 1-3 months",
+      "timeline.6to12": "3-6 months",
+      "timeline.exploring": "Just exploring options",
       
       // Currency
       "currency.usd": "USD",
@@ -63,12 +63,12 @@ const resources = {
   es: {
     translation: {
       // Header
-      "app.title": "IPM Chatbot",
-      "app.subtitle": "Administración Internacional de Propiedades",
+      "app.title": "IPM Experto en Propiedades",
+      "app.subtitle": "Gestión de Alquileres Vacacionales",
       
       // Welcome Screen
-      "welcome.title": "Bienvenido a IPM",
-      "welcome.subtitle": "Su socio de confianza para inversiones inmobiliarias internacionales. Pregúnteme cualquier cosa sobre bienes raíces transfronterizos, oportunidades de inversión o administración de propiedades.",
+      "welcome.title": "Experto en Gestión de Propiedades IPM",
+      "welcome.subtitle": "Pregunte sobre gestión de alquileres vacacionales, ganancias de propietarios, marketing y rendimiento de propiedades.",
       
       // Property Card
       "property.priceRange": "Rango de Precio",
@@ -77,24 +77,24 @@ const resources = {
       "property.loading": "Cargando propiedades...",
       
       // Chat
-      "chat.inputPlaceholder": "Pregunte sobre inversión inmobiliaria internacional...",
+      "chat.inputPlaceholder": "Pregunte sobre gestión de propiedades, alquileres o cómo empezar...",
       "chat.send": "Enviar",
       "chat.suggestedQuestions": "Preguntas sugeridas:",
       
       // Lead Form
-      "lead.title": "Consulta de Inversión",
-      "lead.subtitle": "Ayúdenos a entender sus objetivos de inversión",
+      "lead.title": "Consulta de Gestión de Propiedades",
+      "lead.subtitle": "Cuéntenos sobre su propiedad y objetivos",
       "lead.step1Title": "Información de Contacto",
-      "lead.step2Title": "Detalles de Inversión",
-      "lead.step3Title": "Preferencias de Inversión",
+      "lead.step2Title": "Detalles de la Propiedad",
+      "lead.step3Title": "Preferencias de Gestión",
       "lead.name": "Nombre Completo",
       "lead.email": "Correo Electrónico",
       "lead.phone": "Número de Teléfono",
-      "lead.citizenship": "Ciudadanía",
-      "lead.budget": "Presupuesto de Inversión",
-      "lead.experience": "Experiencia de Inversión",
-      "lead.location": "Ubicación Preferida",
-      "lead.timeline": "Cronograma de Inversión",
+      "lead.citizenship": "País de Residencia",
+      "lead.budget": "Valor de la Propiedad (Estimado)",
+      "lead.experience": "Experiencia como Propietario",
+      "lead.location": "Ubicación de la Propiedad",
+      "lead.timeline": "Disponibilidad para Comenzar",
       "lead.notes": "Notas Adicionales",
       "lead.next": "Siguiente",
       "lead.back": "Atrás",
@@ -102,15 +102,15 @@ const resources = {
       "lead.cancel": "Cancelar",
       
       // Experience Levels
-      "experience.firstTime": "Primer Inversionista",
-      "experience.some": "Algo de Experiencia",
-      "experience.extensive": "Experiencia Extensa",
+      "experience.firstTime": "Primer Propietario",
+      "experience.some": "Actualmente Auto-Gestionando",
+      "experience.extensive": "Trabajando con Otro Gestor",
       
       // Timeline
-      "timeline.3months": "Dentro de 3 meses",
-      "timeline.3to6": "3-6 meses",
-      "timeline.6to12": "6-12 meses",
-      "timeline.exploring": "Solo explorando",
+      "timeline.3months": "Listo para comenzar ahora",
+      "timeline.3to6": "En 1-3 meses",
+      "timeline.6to12": "En 3-6 meses",
+      "timeline.exploring": "Solo explorando opciones",
       
       // Currency
       "currency.usd": "USD",

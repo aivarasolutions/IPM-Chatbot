@@ -1,0 +1,204 @@
+# IPMChatbot Redesign + Knowledge Base Update
+
+We need to update the IPMChatbot Replit app, which powers the floating help/chat button on the IPM website.
+
+Website reference:
+https://www.ipm.services
+
+Git/branch instructions:
+
+* Start from the latest `main` branch.
+* Create a new branch named: `ipm-chatbot-brand-refresh`
+* Do not overwrite unrelated files.
+* After changes, test locally, commit, and prepare for deploy.
+
+## Main Goal
+
+Redesign the floating chatbot widget so it matches the new IPM website theme, branding, colors, tone, and professional luxury property management style.
+
+The chatbot should feel like a natural part of the new IPM website, not a separate blue generic chatbot.
+
+## Visual Design Updates
+
+Update the chatbot widget UI to match the new IPM website:
+
+* Replace blue theme with IPM website colors.
+* Use dark navy, white, cream/light neutral backgrounds, and gold accent colors.
+* Update the chat header to look premium and branded.
+* Use the IPM logo if available in the project assets.
+* If logo is not available, add a clear placeholder path and comment where the new logo should be added.
+* Floating button should use the new brand colors.
+* Remove the generic blue styling.
+* Make it look modern, clean, high-end, and trustworthy.
+* Make sure the widget looks good on desktop and mobile.
+* Keep the widget compact and not blocking too much of the page.
+* Suggested question buttons should be fully readable and should wrap text properly.
+* No black backgrounds unless it is the same dark navy used on the website.
+
+## Chatbot Title / Header
+
+Change the chatbot branding from generic text to something like:
+
+“IPM Property Management Expert”
+
+Subtitle:
+“Ask about vacation rental management, owner earnings, marketing, and property performance.”
+
+## Knowledge Base Update
+
+Update the chatbot knowledge base so it accurately explains International Property Management’s services.
+
+The chatbot should focus on:
+
+* Vacation rental property management
+* Owner portal support
+* How IPM helps owners get more reservations
+* Marketing strategy for properties
+* Airbnb, Booking.com, VRBO, Expedia, Google Vacation Rentals listing support
+* Dynamic pricing
+* Guest communication
+* Check-in support
+* Maintenance coordination
+* Cleaning coordination
+* Owner reporting
+* Revenue optimization
+* Property performance
+* 24/7 guest support
+* Playa del Carmen, Tulum, Cancun, Puerto Rico, USA, and international property management support where applicable
+
+## Management Fee Tiers
+
+Add clear knowledge explaining IPM’s 10%–20% property management tier structure.
+
+Use this general structure:
+
+### 10% Tier
+
+Best for owners who only need basic support or partial management.
+
+Can include:
+
+* Listing support
+* Reservation coordination
+* Owner guidance
+* Limited guest communication
+* Basic reporting
+
+### 15% Tier
+
+Best for owners who want more active management and stronger support.
+
+Can include:
+
+* Guest messaging
+* Reservation support
+* Listing optimization
+* Calendar coordination
+* Pricing recommendations
+* Cleaning coordination
+* Maintenance coordination
+* Monthly owner updates
+
+### 20% Tier
+
+Best for full-service property management.
+
+Can include:
+
+* Full guest communication
+* Full reservation management
+* Listing optimization across major booking platforms
+* Dynamic pricing strategy
+* Cleaning and maintenance coordination
+* Owner reporting
+* Revenue improvement strategy
+* Marketing support
+* 24/7 guest support
+* Higher-touch management
+
+Important:
+Do not promise exact income or guaranteed occupancy. Use professional language like:
+“IPM helps improve visibility, pricing, guest experience, and booking performance, but results depend on the property, market, season, pricing, and availability.”
+
+## Marketing Knowledge
+
+The chatbot should explain that IPM helps market properties through:
+
+* Professional listing optimization
+* Strong property descriptions
+* Better photos and presentation guidance
+* Multi-platform distribution
+* Airbnb, Booking.com, VRBO, Expedia, Google, and direct booking support
+* SEO-friendly property pages when applicable
+* Social media and content marketing when included
+* Dynamic pricing strategy
+* Review improvement strategy
+* Better guest communication
+* Faster response times to help improve conversion
+
+## Suggested On-Screen Questions
+
+Replace the current generic suggested questions with questions focused on owners and property management.
+
+Use questions like:
+
+1. “How can IPM help me get more reservations?”
+2. “What is included in the 10%–20% management tiers?”
+3. “How does IPM market my property?”
+4. “Can IPM manage my Airbnb or Booking.com listing?”
+5. “How does the owner portal work?”
+6. “What reports do property owners receive?”
+7. “Do you help with cleaning and maintenance?”
+8. “How do I get started with IPM?”
+
+Make sure these buttons fit properly inside the widget and do not cut off.
+
+## Lead Capture Rule After 3 Questions
+
+After the visitor asks 3 questions in the chatbot, the chatbot should encourage them to contact IPM directly.
+
+Add logic like:
+
+“Looks like you may be interested in property management support. For the best next step, please contact our team so we can review your property and recommend the right management plan.”
+
+Then show a clear call to action:
+
+* Email: [info@ipm.services](mailto:info@ipm.services)
+* Website: https://www.ipm.services/contact
+* Button text: “Contact IPM”
+* Optional button text: “Email Our Team”
+
+The chatbot should still answer basic questions, but after the 3rd user question it should gently guide them toward contacting IPM.
+
+## Tone
+
+The chatbot tone should be:
+
+* Professional
+* Helpful
+* Luxury hospitality focused
+* Clear and easy to understand
+* Owner-focused
+* Trust-building
+* Not too robotic
+* Not too casual
+
+## Technical Requirements
+
+* Search the project and identify where chatbot styles, UI components, suggested questions, and knowledge base content are stored.
+* Update the correct files only.
+* Keep existing embed functionality working on ipm.services.
+* Do not break the floating widget.
+* Do not break mobile responsiveness.
+* Test that the widget opens, closes, sends messages, displays suggested questions, and triggers the contact CTA after the 3rd user question.
+* Make sure build/typecheck passes.
+
+## Final Output
+
+After completing, provide:
+
+1. Summary of files changed
+2. What was updated visually
+3. What knowledge base content was updated
+4. Confirmation that the 3-question contact CTA works
+5. Any environment variables or logo asset paths that still need to be added

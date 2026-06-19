@@ -36,58 +36,60 @@ async function loadKnowledgeBase(): Promise<KnowledgeBase> {
   return knowledgeBase;
 }
 
-const SYSTEM_PROMPT = `You are an expert AI assistant for International Property Management (IPM), a USA-based international property management and real estate company. You help visitors with property inquiries, investment guidance, and lead generation.
+const SYSTEM_PROMPT = `You are the IPM Property Management Expert — a professional, knowledgeable, and friendly assistant for International Property Management (IPM), a vacation rental property management company serving Playa del Carmen, Tulum, Cancun, Puerto Rico, and select USA and international markets.
 
-## Your Role & Expertise
+## Your Role
 
-You are knowledgeable about:
-- Cross-border real estate investment between USA, Mexico, and Canada
-- International property management and vacation rentals
-- Legal requirements (fideicomiso system, foreign ownership rules)
-- Tax implications for US/Canadian investors in Mexico
-- Financing options for international property purchases
-- ROI calculations and market analysis
-- IPM's full-service property management offerings
+You help property owners understand how IPM can manage their vacation rental properties. You answer questions about:
+- Vacation rental property management services
+- IPM's 10%, 15%, and 20% management fee tiers
+- How IPM helps owners get more reservations
+- Marketing strategy: Airbnb, Booking.com, VRBO, Expedia, Google Vacation Rentals
+- Dynamic pricing and revenue optimization
+- Guest communication and 24/7 guest support
+- Cleaning and maintenance coordination
+- Owner portal and reporting
+- Property performance and occupancy
+- How to get started with IPM
+
+## Management Fee Tiers
+
+IPM offers three management tiers:
+
+**10% Tier – Basic Support**
+Best for owners needing partial management: listing support, reservation coordination, owner guidance, limited guest communication, basic reporting.
+
+**15% Tier – Active Management**
+Best for owners wanting active support: guest messaging, reservation management, listing optimization, calendar coordination, pricing recommendations, cleaning & maintenance coordination, monthly owner updates.
+
+**20% Tier – Full-Service Management**
+Best for hands-off owners: full guest communication, full reservation management, listing optimization across all platforms, dynamic pricing strategy, cleaning & maintenance coordination, detailed owner reporting, revenue improvement strategy, marketing support, 24/7 guest support.
+
+## Important Disclaimer
+
+Never promise specific income amounts or guaranteed occupancy. Always use professional language like:
+"IPM helps improve visibility, pricing, guest experience, and booking performance, but results depend on the property, market, season, pricing, and availability."
 
 ## Communication Style
 
-- Professional, internationally-minded, and trustworthy
-- Emphasize IPM's USA-based expertise in international markets
-- Highlight 10+ years of cross-border experience
-- Provide specific data, ROI figures, and market insights
-- Address currency, legal, and cultural considerations
-- Position IPM as the bridge between US investors and international opportunities
-- Always offer to connect with IPM's international investment specialists when appropriate
+- Professional and warm — like a trusted hospitality expert
+- Owner-focused: explain how management benefits the owner
+- Clear and easy to understand — avoid jargon
+- Trust-building: be honest about what IPM can and cannot guarantee
+- Not too robotic, not too casual — think luxury hospitality
 
-## Key Messaging
+## Lead Guidance
 
-- IPM specializes in helping US/Canadian investors access high-yield international markets
-- Proven track record: 10+ years, 30+ properties, 75-85% occupancy rates, 8-12% ROI
-- Full-service management handles all cross-border complexities
-- Expert guidance on fideicomiso, taxes, financing, and legal compliance
-- Cultural bridge with multilingual support and international expertise
+When owners ask about getting started, contacting IPM, or show clear interest in hiring a property manager, guide them to:
+- **Email:** info@ipm.services
+- **Website:** https://www.ipm.services/contact
 
-## Response Guidelines
+## Response Format
 
-1. Answer questions accurately using the knowledge base provided
-2. When discussing properties, highlight specific ROI, location benefits, and features
-3. For legal/tax questions, provide helpful information but recommend professional consultation
-4. When users show strong interest, suggest connecting with IPM's investment specialists
-5. Proactively suggest relevant properties based on user's stated preferences
-6. Include suggested follow-up questions to guide the conversation
-7. For qualified leads (serious investors with budget >$200K), indicate that lead capture would be beneficial
-
-## Lead Qualification Triggers
-
-Suggest connecting when users:
-- Express serious investment intent
-- Ask about specific properties or locations
-- Discuss budget ranges above $200K
-- Request detailed ROI or investment analysis
-- Want to understand the buying process
-- Ask about financing or property management
-
-Never be pushy, but be helpful in connecting serious investors with IPM experts.`;
+- Use clear, readable formatting with bold for key terms
+- Use bullet points for lists of services or features
+- Keep responses focused and concise — don't overwhelm with information
+- End responses with a helpful follow-up suggestion when appropriate`;
 
 export async function generateChatResponse(
   message: string,
@@ -103,17 +105,14 @@ export async function generateChatResponse(
   const context = `
 # IPM Knowledge Base
 
-## Properties
-${JSON.stringify(kb.properties, null, 2)}
-
-## Company Information
+## Company & Services
 ${JSON.stringify(kb.ipmInfo, null, 2)}
 
-## Market Analysis
-${JSON.stringify(kb.markets, null, 2)}
-
-## FAQ
+## Frequently Asked Questions
 ${JSON.stringify(kb.faq, null, 2)}
+
+## Market Information
+${JSON.stringify(kb.markets, null, 2)}
 `;
 
   const messages: OpenAI.Chat.ChatCompletionMessageParam[] = [
@@ -141,24 +140,20 @@ ${JSON.stringify(kb.faq, null, 2)}
   // Generate suggested questions based on context
   const suggestedQuestions = generateSuggestedQuestions(message, responseMessage);
 
-  // Extract relevant properties if mentioned
-  const relevantProperties = extractRelevantProperties(message, kb.properties);
-
   return {
     message: responseMessage,
     suggestedQuestions,
     leadQualificationPrompt: shouldPromptLead,
-    properties: relevantProperties.length > 0 ? relevantProperties : undefined,
   };
 }
 
 function detectLeadQualificationOpportunity(userMessage: string, botResponse: string): boolean {
   const leadTriggers = [
-    /\b(interested|want|looking|buy|purchase|invest)\b/i,
-    /\b(budget|afford|price range|financing)\b/i,
-    /\b(when|timeline|ready|soon)\b/i,
-    /\b(contact|speak|talk|consult|call)\b/i,
-    /\b(serious|committed|ready|decision)\b/i,
+    /\b(interested|want|looking|hire|start|sign up|enroll)\b/i,
+    /\b(manage|management|managing my property)\b/i,
+    /\b(how much|cost|fee|pricing|tier)\b/i,
+    /\b(contact|speak|talk|consult|call|email)\b/i,
+    /\b(ready|get started|next step|sign)\b/i,
   ];
 
   const messageContent = userMessage + " " + botResponse;
@@ -168,92 +163,69 @@ function detectLeadQualificationOpportunity(userMessage: string, botResponse: st
 }
 
 function generateSuggestedQuestions(userMessage: string, botResponse: string): string[] {
-  const lowerMessage = userMessage.toLowerCase();
-  const lowerResponse = botResponse.toLowerCase();
+  const lower = (userMessage + " " + botResponse).toLowerCase();
 
-  // Topic-based suggestions
-  if (lowerMessage.includes("tulum") || lowerResponse.includes("tulum")) {
+  if (lower.includes("reservation") || lower.includes("booking") || lower.includes("airbnb")) {
     return [
-      "What's the ROI for Tulum properties?",
-      "How does the fideicomiso work?",
-      "Tell me about financing options",
+      "How does IPM market my property?",
+      "What is included in the 20% full-service tier?",
+      "How does dynamic pricing work?",
     ];
   }
 
-  if (lowerMessage.includes("tax") || lowerResponse.includes("tax")) {
+  if (lower.includes("fee") || lower.includes("tier") || lower.includes("percent") || lower.includes("%")) {
     return [
-      "What are ongoing ownership costs?",
-      "How does IPM handle property management?",
-      "Show me properties in my budget",
+      "What is included in each management tier?",
+      "How do I get started with IPM?",
+      "Do you help with cleaning and maintenance?",
     ];
   }
 
-  if (lowerMessage.includes("fideicomiso") || lowerResponse.includes("fideicomiso")) {
+  if (lower.includes("marketing") || lower.includes("listing") || lower.includes("platform")) {
     return [
-      "What are the tax implications?",
-      "How long does the buying process take?",
-      "Can I finance an international property?",
+      "Can IPM manage my Airbnb or Booking.com listing?",
+      "How does IPM improve my property's ranking?",
+      "What is dynamic pricing and how does it work?",
     ];
   }
 
-  if (lowerMessage.includes("financing") || lowerResponse.includes("financing")) {
+  if (lower.includes("guest") || lower.includes("communication") || lower.includes("support")) {
     return [
-      "What ROI can I expect?",
-      "Show me properties under $500K",
-      "How does property management work?",
+      "How does IPM handle guest communication?",
+      "What reports do property owners receive?",
+      "How does the owner portal work?",
     ];
   }
 
-  // Default suggestions
+  if (lower.includes("cleaning") || lower.includes("maintenance") || lower.includes("repair")) {
+    return [
+      "How does IPM coordinate cleaning between stays?",
+      "What is included in the 15% management tier?",
+      "How do I track my property's performance?",
+    ];
+  }
+
+  if (lower.includes("report") || lower.includes("portal") || lower.includes("earnings")) {
+    return [
+      "How does the owner portal work?",
+      "How often do I receive owner reports?",
+      "Can I see my bookings and revenue in real time?",
+    ];
+  }
+
+  if (lower.includes("start") || lower.includes("onboard") || lower.includes("get started")) {
+    return [
+      "What information does IPM need to get started?",
+      "How long does onboarding take?",
+      "What management tier is right for me?",
+    ];
+  }
+
+  // Default owner-focused suggestions
   return [
-    "Tell me about beachfront properties",
-    "What's the difference between Mexico and USA investments?",
-    "How does IPM manage properties remotely?",
-    "What are the legal requirements for US investors?",
+    "What is included in the 10%–20% management tiers?",
+    "How does IPM market my property?",
+    "Do you help with cleaning and maintenance?",
+    "How do I get started with IPM?",
   ];
-}
-
-function extractRelevantProperties(message: string, propertiesData: any): any[] {
-  const lowerMessage = message.toLowerCase();
-  const properties = propertiesData.featured_properties || [];
-
-  // Location-based matching
-  if (lowerMessage.includes("tulum")) {
-    return properties.filter((p: any) => p.location.toLowerCase().includes("tulum"));
-  }
-  if (lowerMessage.includes("playa") || lowerMessage.includes("del carmen")) {
-    return properties.filter((p: any) => p.location.toLowerCase().includes("playa del carmen"));
-  }
-  if (lowerMessage.includes("vallarta")) {
-    return properties.filter((p: any) => p.location.toLowerCase().includes("vallarta"));
-  }
-  if (lowerMessage.includes("lake norman") || lowerMessage.includes("carolina")) {
-    return properties.filter((p: any) => p.location.toLowerCase().includes("lake norman"));
-  }
-  if (lowerMessage.includes("miami") || lowerMessage.includes("florida")) {
-    return properties.filter((p: any) => p.location.toLowerCase().includes("miami"));
-  }
-
-  // Feature-based matching
-  if (lowerMessage.includes("beach") || lowerMessage.includes("beachfront")) {
-    return properties.filter((p: any) =>
-      p.features.some((f: string) => f.toLowerCase().includes("beach"))
-    );
-  }
-
-  if (lowerMessage.includes("waterfront")) {
-    return properties.filter((p: any) =>
-      p.features.some((f: string) => f.toLowerCase().includes("waterfront"))
-    );
-  }
-
-  // Country-based matching
-  if (lowerMessage.includes("mexico") || lowerMessage.includes("mexican")) {
-    return properties.filter((p: any) => p.country === "Mexico");
-  }
-  if (lowerMessage.includes("usa") || lowerMessage.includes("united states") || lowerMessage.includes("american")) {
-    return properties.filter((p: any) => p.country === "USA");
-  }
-
-  return [];
 }

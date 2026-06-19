@@ -29,17 +29,17 @@
             width: 60px;
             height: 60px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
-            border: none;
+            background: linear-gradient(135deg, #0D2240 0%, #1a3a6b 100%);
+            border: 2px solid rgba(196, 160, 82, 0.4);
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.4);
+            box-shadow: 0 4px 16px rgba(13, 34, 64, 0.45);
             display: flex;
             align-items: center;
             justify-content: center;
             transition: transform 0.2s, box-shadow 0.2s;
-          " onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 6px 20px rgba(30, 64, 175, 0.5)';" 
-             onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 12px rgba(30, 64, 175, 0.4)';">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+          " onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 6px 24px rgba(13, 34, 64, 0.55)';"
+             onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 16px rgba(13, 34, 64, 0.45)';">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C4A052" stroke-width="2">
               <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
             </svg>
           </button>
@@ -55,49 +55,55 @@
             max-height: calc(100vh - 120px);
             background: white;
             border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 12px 48px rgba(13, 34, 64, 0.22);
             overflow: hidden;
             flex-direction: column;
+            border: 1px solid rgba(196, 160, 82, 0.2);
           ">
             <!-- Header -->
             <div style="
-              background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+              background: linear-gradient(135deg, #0D2240 0%, #162E52 100%);
               color: white;
               padding: 16px;
               display: flex;
               align-items: center;
               justify-content: space-between;
+              border-bottom: 1px solid rgba(196, 160, 82, 0.25);
             ">
               <div style="display: flex; align-items: center; gap: 12px;">
                 <div style="
                   width: 40px;
                   height: 40px;
-                  background: rgba(255, 255, 255, 0.2);
+                  background: rgba(196, 160, 82, 0.18);
+                  border: 1px solid rgba(196, 160, 82, 0.35);
                   border-radius: 50%;
                   display: flex;
                   align-items: center;
                   justify-content: center;
+                  flex-shrink: 0;
                 ">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C4A052" stroke-width="2">
                     <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                   </svg>
                 </div>
                 <div>
-                  <div style="font-weight: 600; font-size: 16px;">IPM Property Expert</div>
-                  <div style="font-size: 12px; opacity: 0.9;">Ask about properties in Mexico & USA</div>
+                  <div style="font-weight: 600; font-size: 15px; color: #ffffff; letter-spacing: 0.01em;">IPM Property Management Expert</div>
+                  <div style="font-size: 11px; color: rgba(196, 160, 82, 0.9); margin-top: 1px;">Vacation rentals · Owner earnings · Marketing</div>
                 </div>
               </div>
               <button id="ipm-chat-close" style="
                 background: transparent;
                 border: none;
-                color: white;
+                color: rgba(255,255,255,0.7);
                 cursor: pointer;
                 padding: 4px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-              ">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                border-radius: 4px;
+                transition: color 0.15s;
+              " onmouseover="this.style.color='#ffffff';" onmouseout="this.style.color='rgba(255,255,255,0.7)';">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <line x1="18" y1="6" x2="6" y2="18"></line>
                   <line x1="6" y1="6" x2="18" y2="18"></line>
                 </svg>
@@ -105,7 +111,7 @@
             </div>
 
             <!-- Chat Content (iframe) -->
-            <iframe 
+            <iframe
               id="ipm-chat-iframe"
               src="${this.config.apiUrl.replace('/api', '')}?embedded=true&theme=${this.config.theme}&lang=${this.config.language}"
               style="
@@ -124,14 +130,13 @@
             position: absolute;
             top: -5px;
             right: -5px;
-            background: #ef4444;
-            color: white;
+            background: #C4A052;
+            color: #0D2240;
             border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            font-size: 12px;
-            font-weight: 600;
-            display: flex;
+            width: 22px;
+            height: 22px;
+            font-size: 11px;
+            font-weight: 700;
             align-items: center;
             justify-content: center;
             border: 2px solid white;
@@ -151,7 +156,7 @@
       bubble.addEventListener('click', () => {
         const isVisible = chatWindow.style.display === 'flex';
         chatWindow.style.display = isVisible ? 'none' : 'flex';
-        
+
         if (!isVisible && badge) {
           badge.style.display = 'none';
         }
