@@ -5,8 +5,11 @@ import { generateChatResponse } from "./services/openai";
 import { getExchangeRates } from "./services/currency";
 import { chatRequestSchema, insertLeadSchema, propertySearchSchema } from "@shared/schema";
 import { z } from "zod";
+import { registerAssistantRoutes } from "./assistant-routes";
+import { requireStaff } from "./middlewares/staff-auth";
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  registerAssistantRoutes(app);
   // Health check endpoint
   app.get("/health", (req, res) => {
     res.json({ status: "healthy", timestamp: new Date().toISOString() });
@@ -130,13 +133,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const leadData = insertLeadSchema.parse(req.body);
       const lead = await storage.createLead(leadData);
       
-      console.log("New lead captured:", {
-        id: lead.id,
-        email: lead.email,
-        budget: lead.budget,
-        location: lead.locationPreference,
-      });
-
       res.status(201).json(lead);
     } catch (error) {
       if (error instanceof z.ZodError) {
@@ -148,7 +144,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Get all leads (admin endpoint)
-  app.get("/api/leads", async (req, res) => {
+  app.get("/api/leads", requireStaff, async (req, res) => {
     try {
       const leads = await storage.getAllLeads();
       res.json(leads);
@@ -159,7 +155,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Get leads by session
-  app.get("/api/leads/session/:sessionId", async (req, res) => {
+  app.get("/api/leads/session/:sessionId", requireStaff, async (req, res) => {
     try {
       const leads = await storage.getLeadsBySession(req.params.sessionId);
       res.json(leads);
@@ -192,7 +188,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Analytics endpoint
-  app.get("/api/analytics", async (req, res) => {
+  app.get("/api/analytics", requireStaff, async (req, res) => {
     try {
       const leads = await storage.getAllLeads();
       const messages = await storage.getAllChatMessages();
@@ -204,25 +200,29 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       // Budget distribution
       const budgetDistribution = leads.reduce((acc, lead) => {
-        acc[lead.budget] = (acc[lead.budget] || 0) + 1;
+        const key = lead.budget || "Not specified";
+        acc[key] = (acc[key] || 0) + 1;
         return acc;
       }, {} as Record<string, number>);
       
       // Investment experience
       const experienceDistribution = leads.reduce((acc, lead) => {
-        acc[lead.investmentExperience] = (acc[lead.investmentExperience] || 0) + 1;
+        const key = lead.investmentExperience || "Not specified";
+        acc[key] = (acc[key] || 0) + 1;
         return acc;
       }, {} as Record<string, number>);
       
       // Location preference
       const locationDistribution = leads.reduce((acc, lead) => {
-        acc[lead.locationPreference] = (acc[lead.locationPreference] || 0) + 1;
+        const key = lead.locationPreference || "Not specified";
+        acc[key] = (acc[key] || 0) + 1;
         return acc;
       }, {} as Record<string, number>);
       
       // Timeline distribution
       const timelineDistribution = leads.reduce((acc, lead) => {
-        acc[lead.timeline] = (acc[lead.timeline] || 0) + 1;
+        const key = lead.investmentTimeline || "Not specified";
+        acc[key] = (acc[key] || 0) + 1;
         return acc;
       }, {} as Record<string, number>);
       

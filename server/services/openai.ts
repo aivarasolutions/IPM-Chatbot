@@ -1,11 +1,7 @@
 import OpenAI from "openai";
 import fs from "fs/promises";
 import path from "path";
-
-const openai = new OpenAI({
-  apiKey: process.env.AI_INTEGRATIONS_OPENAI_API_KEY,
-  baseURL: process.env.AI_INTEGRATIONS_OPENAI_BASE_URL,
-});
+import { createAICompletion } from "./ai-provider";
 
 interface KnowledgeBase {
   properties: any;
@@ -125,11 +121,9 @@ ${JSON.stringify(kb.markets, null, 2)}
     { role: "user", content: message },
   ];
 
-  const completion = await openai.chat.completions.create({
-    model: "gpt-4o-mini",
+  const completion = await createAICompletion({
+    mode: "public",
     messages,
-    temperature: 0.7,
-    max_tokens: 1000,
   });
 
   const responseMessage = completion.choices[0]?.message?.content || "I apologize, but I'm having trouble processing your request. Please try again.";

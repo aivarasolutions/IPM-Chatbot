@@ -1,0 +1,38 @@
+[
+  {
+    "seedKey": "promotion",
+    "title": "10% Listing Promotion Plan",
+    "category": "Promotion plan",
+    "content": "IPM adds another source of reservations, not a replacement for the owner's existing business. Owners can keep Airbnb, Booking.com and other existing platforms. IPM does not need to take over the owner's existing Airbnb listing for promotion. IPM can help create listings on additional supported platforms. Calendars should be synchronized to help prevent double bookings, but never guarantee double bookings are impossible. No upfront setup fee. IPM earns a 10% commission only from reservations IPM generates, not reservations owners generate independently through their own existing channels. The first two months have no monthly subscription fee. Starting in month 3, a $40 monthly platform/service fee applies only when IPM is generating qualifying reservations under the current IPM policy. It is deducted from IPM-generated reservation proceeds, rather than a separate out-of-pocket payment. Do not claim the owner owes this fee regardless of reservations. The exact qualifying-reservation threshold is not specified: confirm it rather than inventing one. Owners approve the nightly amount they want to receive under the agreed pricing structure; IPM can account for commission, platform costs, seasonality and other agreed expenses in marketing/pricing."
+  },
+  {
+    "seedKey": "management",
+    "title": "20% Full Management Plan",
+    "category": "Management plan",
+    "content": "Full management is separate from the 10% listing promotion service. IPM's 20% full management program includes guest communication, reservation management, listing management, calendar coordination, pricing, cleaning/turnover and maintenance coordination, owner communication/reporting, multi-platform distribution and marketing support. IPM coordinates operational services; do not imply cleaning, repairs or supplies are free or included in the commission. Availability and the exact scope must be confirmed for the property's location and agreement. Never guarantee earnings, occupancy or results. Do not introduce a 15% tier when explaining these two plans; the promotion plan and full management plan are distinct."
+  },
+  {
+    "seedKey": "company",
+    "title": "Company and positioning",
+    "category": "Company information",
+    "content": "International Property Management (IPM) is a United States-based company serving properties internationally. IPM specializes in vacation rentals, large family/group accommodation and other short-term rentals. Promotion helps fill empty nights and gain additional exposure without replacing what already works for the owner. IPM works with major channels including Airbnb, Booking.com, VRBO, Expedia and Google Vacation Rentals where supported. Do not promise every property will be listed on every platform. Contact: info@ipm.services, https://www.ipm.services/contact."
+  },
+  {
+    "seedKey": "onboarding",
+    "title": "Onboarding links",
+    "category": "Onboarding",
+    "content": "English listing promotion information/onboarding: https://www.ipm.services/listing-promotion. Spanish: https://www.ipm.services/es/listing-promotion. Use the matching language link when the prospect is interested in moving forward. Do not include a link in every response or push onboarding before answering a question. A prospect can talk to IPM first via info@ipm.services or https://www.ipm.services/contact."
+  },
+  {
+    "seedKey": "unknown-policies",
+    "title": "Unverified policies and safe answers",
+    "category": "Policies and approved answers",
+    "content": "Specific payment timing/methods, cancellation rights/notice periods, platform-specific access requirements and exact qualifying-reservation thresholds have not been verified in this knowledge base. If asked, say naturally: 'Let me confirm that for you so I give you the correct information.' In Spanish: 'Déjame confirmar ese detalle para darte la información correcta.' Never ask for a client's Airbnb password or other account password. For calendar synchronization, explain that availability helps coordinate channels and reduce double-booking risk; do not invent a technical integration or guarantee."
+  },
+  {
+    "seedKey": "style",
+    "title": "Response guidelines and common objections",
+    "category": "Response guidelines",
+    "content": "Draft short, conversational, human-sounding, friendly, confident and professional messages ready to copy to a client. Avoid corporate language, excessive bullets, unnecessary em dashes and aggressive selling. A light smile emoji is appropriate occasionally, but not required. Match the client's language automatically: natural Latin American/Mexican Spanish for Spanish messages and English for English messages unless staff explicitly switches language. Answer the client's actual question first, then suggest the next appropriate step. Recognize initial contact, interest, questions/objections, pricing/platform/trust questions, follow-up, readiness to onboard, onboarding started and active owners. Do not force onboarding for a simple question. For fees, distinguish no upfront setup fee, the 10% commission on IPM-generated bookings only, and the conditional $40 fee from month 3. For existing owners, avoid lead-selling language and focus on support. Never invent policies to overcome objections."
+  }
+]

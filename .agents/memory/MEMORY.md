@@ -1,0 +1,1 @@
+- [Staff assistant scope](staff-assistant-scope.md) — staff-only, human-reviewed drafts; preserve public chatbot and keep its business knowledge separate.

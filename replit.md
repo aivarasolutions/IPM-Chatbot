@@ -33,6 +33,8 @@ The design adheres to a professional real estate theme with a primary deep profe
 - **Widget Embedded Mode:** Detects `?embedded=true` URL parameter to hide header/sidebar, apply compact layout with reduced padding (px-3 py-4), smaller text sizes, and enforced width constraints to fit 380px widget. Message bubbles constrained to 85% width (303px max) with word-break: break-all to prevent horizontal overflow.
 
 ## External Dependencies
+- **IPM Assistant:** Staff workspace implementation, API/database additions, configuration, privacy limits, and verification commands are documented in `docs/ipm-assistant.md`.
+- **Clerk:** Verified-email staff/admin authorization for the new workspace and existing lead/analytics read endpoints.
 - **OpenAI GPT-4o-mini**: For AI-powered conversational capabilities.
 - **exchangerate-api.com**: For real-time USD/MXN currency exchange rates.
 - **PostgreSQL**: Relational database for persistent storage of properties, leads, and chat messages.
