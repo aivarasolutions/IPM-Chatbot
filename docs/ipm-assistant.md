@@ -110,3 +110,16 @@ No new OpenAI key, second AI backend, replacement database, WhatsApp/email conne
 - Visitor previews and unauthenticated access checks are performed separately. The signed-in staff UI cannot be visually verified in the preview capture browser; it is not bypassed for testing.
 
 Non-blocking existing build warnings include stale Browserslist data, a PostCSS warning, and the large client bundle. A dependency spot-check also found legacy warnings outside this feature; the Express 4 dependency was patched and `proxy-addr` was constrained to its security-fixed version without a major Express migration. This is not a claim that the entire legacy project has passed a full security audit.
+
+## Public-chat picture uploads
+
+The user subsequently explicitly requested pictures in the public **IPM Property Expert** chat. It now has a **Photo/Imagen** button, removable previews, drag/drop, clipboard image paste, and image-only sends, including in the embedded widget.
+
+- Public `POST /api/chat/images` accepts multipart `message`, `sessionId`, and up to three `files` (JPG/JPEG, PNG, WEBP), 5 MB each and 12 MB combined.
+- Uses the same AI client/model and signature validator. It reads pictures directly with vision and answers the question in the screenshot; it does **not** load private staff knowledge.
+- Original image buffers are transient. Only the question text and a bounded, identifier-minimized context summary enter existing public conversation history; previews are local browser object URLs and are never stored on the server.
+- Text-only JSON `POST /api/chat` remains supported, including follow-ups to a picture question. The last user question is no longer duplicated in AI history, and generated session IDs are consistent across both stored messages and the response.
+- Invalid uploads retain the unsent text/pictures and show an error. Client/server enforce format, signature, count, and size limits. Anonymous image requests also have per-process budgets (12/minute per server-observed remote IP, 30/minute overall, four concurrent); no forwarded-header IP is blindly trusted.
+- No database schema or credentials changed for this addition.
+
+Verification commands: `npm run test:public-images` (eight input/HTTP upload-validation checks) and `npm run test:public-images:browser` (real development-site mobile Chromium interaction with real AI, synthetic fixtures, and cleanup). Browser testing uses Chromium, ImageMagick, and fontconfig available in the development environment; these are not production runtime requirements.

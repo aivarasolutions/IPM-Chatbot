@@ -10,7 +10,9 @@
     "check": "tsc",
     "db:push": "drizzle-kit push",
     "test:assistant": "tsx --test tests/assistant.test.ts",
-    "test:assistant:integration": "tsx --test tests/assistant.integration.test.ts"
+    "test:assistant:integration": "tsx --test tests/assistant.integration.test.ts",
+    "test:public-images": "tsx --test tests/public-chat-images.test.ts",
+    "test:public-images:browser": "tsx tests/public-chat-browser.ts"
   },
   "dependencies": {
     "@clerk/express": "^2.1.76",

@@ -7,9 +7,12 @@ import { chatRequestSchema, insertLeadSchema, propertySearchSchema } from "@shar
 import { z } from "zod";
 import { registerAssistantRoutes } from "./assistant-routes";
 import { requireStaff } from "./middlewares/staff-auth";
+import { registerPublicImageChat, publicConversationHistory } from "./public-chat-images";
+import { randomUUID } from "node:crypto";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   registerAssistantRoutes(app);
+  registerPublicImageChat(app);
   // Health check endpoint
   app.get("/health", (req, res) => {
     res.json({ status: "healthy", timestamp: new Date().toISOString() });
@@ -81,28 +84,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/chat", async (req, res) => {
     try {
       const { message, sessionId, context } = chatRequestSchema.parse(req.body);
+      const activeSessionId = sessionId || `session-${randomUUID()}`;
+      const history = await storage.getChatMessagesBySession(activeSessionId);
 
       // Store user message
       await storage.createChatMessage({
-        sessionId: sessionId || `session-${Date.now()}`,
+        sessionId: activeSessionId,
         role: "user",
         content: message,
         metadata: context || null,
       });
 
       // Get conversation history
-      const history = await storage.getChatMessagesBySession(sessionId || "");
-      const conversationHistory = history.slice(-10).map((msg) => ({
-        role: msg.role,
-        content: msg.content,
-      }));
+      const conversationHistory = publicConversationHistory(history);
 
       // Generate AI response
       const aiResponse = await generateChatResponse(message, conversationHistory);
 
       // Store assistant message
       await storage.createChatMessage({
-        sessionId: sessionId || `session-${Date.now()}`,
+        sessionId: activeSessionId,
         role: "assistant",
         content: aiResponse.message,
         metadata: {
@@ -113,7 +114,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       res.json({
         message: aiResponse.message,
-        sessionId: sessionId || `session-${Date.now()}`,
+        sessionId: activeSessionId,
         suggestedQuestions: aiResponse.suggestedQuestions,
         leadQualificationPrompt: aiResponse.leadQualificationPrompt,
         properties: aiResponse.properties,

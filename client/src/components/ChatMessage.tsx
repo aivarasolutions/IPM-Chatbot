@@ -3,14 +3,17 @@ import { Building2, User } from "lucide-react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import { useTranslation } from "react-i18next";
 
 interface ChatMessageProps {
   role: "user" | "assistant";
   content: string;
   timestamp?: Date | null;
+  imagePreviews?: string[];
 }
 
-export function ChatMessage({ role, content, timestamp }: ChatMessageProps) {
+export function ChatMessage({ role, content, timestamp, imagePreviews = [] }: ChatMessageProps) {
+  const { t } = useTranslation();
   const isUser = role === "user";
   
   const formatTimestamp = () => {
@@ -76,6 +79,18 @@ export function ChatMessage({ role, content, timestamp }: ChatMessageProps) {
             {content}
           </ReactMarkdown>
         </div>
+        {imagePreviews.length > 0 && (
+          <div className={cn("mt-2 grid gap-2", imagePreviews.length === 1 ? "grid-cols-1" : "grid-cols-2")} role="group" aria-label={t("chat.sentPictures")}>
+            {imagePreviews.map((src, index) => (
+              <img
+                key={src}
+                src={src}
+                alt={t("chat.sentPicture", { number: index + 1 })}
+                className="max-h-56 min-h-16 w-full rounded-lg border border-current/10 object-contain"
+              />
+            ))}
+          </div>
+        )}
         {formatTimestamp() && (
           <p className={cn(
             "text-xs mt-2 opacity-70",

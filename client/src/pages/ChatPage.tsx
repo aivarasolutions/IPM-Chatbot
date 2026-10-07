@@ -16,11 +16,14 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { Building2, Menu, Home as HomeIcon } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 import type { ChatMessage as ChatMessageType, ChatResponse, Property } from "@shared/schema";
 
 export default function ChatPage() {
   const { t } = useTranslation();
+  const { toast } = useToast();
   const [messages, setMessages] = useState<ChatMessageType[]>([]);
+  const [messageImages, setMessageImages] = useState<Record<string, string[]>>({});
   const [sessionId, setSessionId] = useState<string>("");
   const [suggestedQuestions, setSuggestedQuestions] = useState<string[]>([
     "How can IPM help me get more reservations?",
@@ -31,6 +34,8 @@ export default function ChatPage() {
   const [showLeadForm, setShowLeadForm] = useState(false);
   const [featuredProperties, setFeaturedProperties] = useState<Property[]>([]);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const activeImageUrls = useRef(new Set<string>());
+  const sendInProgress = useRef(false);
   const userQuestionCount = useRef(0);
   const ctaShown = useRef(false);
 
@@ -50,6 +55,11 @@ export default function ChatPage() {
     scrollToBottom();
   }, [messages]);
 
+  useEffect(() => () => {
+    activeImageUrls.current.forEach((url) => URL.revokeObjectURL(url));
+    activeImageUrls.current.clear();
+  }, []);
+
   const { data: properties } = useQuery<Property[]>({
     queryKey: ["/api/properties"],
   });
@@ -61,47 +71,30 @@ export default function ChatPage() {
   }, [properties]);
 
   const chatMutation = useMutation({
-    mutationFn: async (message: string) => {
-      const response = await apiRequest<ChatResponse>("POST", "/api/chat", {
-        message,
-        sessionId,
+    mutationFn: async ({ message, files }: { message: string; files?: File[] }) => {
+      if (!files?.length) {
+        return apiRequest<ChatResponse>("POST", "/api/chat", { message, sessionId });
+      }
+      const form = new FormData();
+      if (message) form.append("message", message);
+      form.append("sessionId", sessionId);
+      files.forEach((file) => form.append("files", file));
+      const response = await fetch("/api/chat/images", {
+        method: "POST",
+        credentials: "include",
+        body: form,
       });
-      return response;
-    },
-    onSuccess: (data) => {
-      const assistantMessage: ChatMessageType = {
-        id: `msg-${Date.now()}`,
-        sessionId,
-        role: "assistant",
-        content: data.message,
-        timestamp: new Date(),
-        metadata: null,
-      };
-      setMessages((prev) => [...prev, assistantMessage]);
-
-      if (data.suggestedQuestions && data.suggestedQuestions.length > 0) {
-        setSuggestedQuestions(data.suggestedQuestions);
+      if (!response.ok) {
+        let error = t("chat.sendErrorFallback");
+        try {
+          const body = await response.json();
+          if (typeof body.error === "string") error = body.error;
+        } catch {
+          // Use the localized fallback for non-JSON errors.
+        }
+        throw new Error(error);
       }
-
-      if (data.leadQualificationPrompt) {
-        setTimeout(() => setShowLeadForm(true), 1000);
-      }
-
-      // After the 3rd user question, gently guide toward contacting IPM
-      if (userQuestionCount.current >= 3 && !ctaShown.current) {
-        ctaShown.current = true;
-        setTimeout(() => {
-          const ctaMessage: ChatMessageType = {
-            id: `msg-cta-${Date.now()}`,
-            sessionId,
-            role: "assistant",
-            content: `It looks like you have a lot of great questions about property management — that's a great sign!\n\nFor the most personalized guidance, I'd recommend reaching out to the IPM team directly. They can review your property and recommend the right management plan for you.\n\n**Ready to take the next step?**\n\n📧 **Email:** info@ipm.services\n🌐 **Website:** [Contact IPM](https://www.ipm.services/contact)\n\nFeel free to keep asking questions here too — I'm happy to help!`,
-            timestamp: new Date(),
-            metadata: null,
-          };
-          setMessages((prev) => [...prev, ctaMessage]);
-        }, 800);
-      }
+      return response.json() as Promise<ChatResponse>;
     },
   });
 
@@ -127,18 +120,83 @@ export default function ChatPage() {
     },
   });
 
-  const handleSendMessage = (message: string) => {
-    userQuestionCount.current += 1;
-    const userMessage: ChatMessageType = {
-      id: `msg-${Date.now()}`,
-      sessionId,
-      role: "user",
-      content: message,
-      timestamp: new Date(),
-      metadata: null,
-    };
-    setMessages((prev) => [...prev, userMessage]);
-    chatMutation.mutate(message);
+  const explainSendError = (error: unknown) => {
+    let detail = error instanceof Error ? error.message : t("chat.sendErrorFallback");
+    const match = detail.match(/^\d+:\s*([\s\S]*)$/);
+    if (match) {
+      detail = match[1];
+      try {
+        const parsed = JSON.parse(detail);
+        if (typeof parsed.error === "string") detail = parsed.error;
+      } catch {
+        // Keep the original API error text.
+      }
+    }
+    toast({ title: t("chat.sendErrorTitle"), description: detail || t("chat.sendErrorFallback"), variant: "destructive" });
+  };
+
+  const handleSendMessage = async (message: string, files?: File[], reportError = true): Promise<void> => {
+    if (sendInProgress.current) {
+      const error = new Error(t("chat.sendAlreadyPending"));
+      if (reportError) explainSendError(error);
+      else throw error;
+      return;
+    }
+    sendInProgress.current = true;
+    const imagePreviews = files?.map((file) => URL.createObjectURL(file)) || [];
+    imagePreviews.forEach((url) => activeImageUrls.current.add(url));
+    try {
+      const data = await chatMutation.mutateAsync({ message, files });
+      const userMessageId = `msg-user-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+      const assistantMessageId = `msg-assistant-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+      const userMessage: ChatMessageType = {
+        id: userMessageId,
+        sessionId,
+        role: "user",
+        content: message,
+        timestamp: new Date(),
+        metadata: null,
+      };
+      const assistantMessage: ChatMessageType = {
+        id: assistantMessageId,
+        sessionId,
+        role: "assistant",
+        content: data.message,
+        timestamp: new Date(),
+        metadata: null,
+      };
+      if (imagePreviews.length) {
+        setMessageImages((current) => ({ ...current, [userMessageId]: imagePreviews }));
+      }
+      setMessages((current) => [...current, userMessage, assistantMessage]);
+      userQuestionCount.current += 1;
+
+      if (data.suggestedQuestions?.length) setSuggestedQuestions(data.suggestedQuestions);
+      if (data.leadQualificationPrompt) setTimeout(() => setShowLeadForm(true), 1000);
+      if (userQuestionCount.current >= 3 && !ctaShown.current) {
+        ctaShown.current = true;
+        setTimeout(() => {
+          const ctaMessage: ChatMessageType = {
+            id: `msg-cta-${Date.now()}`,
+            sessionId,
+            role: "assistant",
+            content: `It looks like you have a lot of great questions about property management — that's a great sign!\n\nFor the most personalized guidance, I'd recommend reaching out to the IPM team directly. They can review your property and recommend the right management plan for you.\n\n**Ready to take the next step?**\n\n📧 **Email:** info@ipm.services\n🌐 **Website:** [Contact IPM](https://www.ipm.services/contact)\n\nFeel free to keep asking questions here too — I'm happy to help!`,
+            timestamp: new Date(),
+            metadata: null,
+          };
+          setMessages((current) => [...current, ctaMessage]);
+        }, 800);
+      }
+    } catch (error) {
+      imagePreviews.forEach((url) => {
+        URL.revokeObjectURL(url);
+        activeImageUrls.current.delete(url);
+      });
+      if (reportError) explainSendError(error);
+      else throw error;
+    } finally {
+      sendInProgress.current = false;
+    }
   };
 
   return (
@@ -254,6 +312,7 @@ export default function ChatPage() {
                       <Button
                         key={idx}
                         variant="outline"
+                        disabled={chatMutation.isPending}
                         className={isEmbedded ? "justify-start text-left h-auto py-2 px-3 text-xs" : "justify-start text-left h-auto py-3 px-4"}
                         onClick={() => handleSendMessage(q)}
                         data-testid={`button-welcome-${idx}`}
@@ -271,11 +330,12 @@ export default function ChatPage() {
                       role={msg.role as "user" | "assistant"}
                       content={msg.content}
                       timestamp={msg.timestamp || undefined}
+                      imagePreviews={messageImages[msg.id]}
                     />
                   ))}
-                  {chatMutation.isPending && <TypingIndicator />}
                 </>
               )}
+              {chatMutation.isPending && <TypingIndicator />}
               <div ref={messagesEndRef} />
             </div>
           </ScrollArea>
@@ -291,7 +351,8 @@ export default function ChatPage() {
 
           {/* Input */}
           <ChatInput
-            onSendMessage={handleSendMessage}
+            onSendMessage={(message, files) => handleSendMessage(message, files, false)}
+            onError={explainSendError}
             disabled={chatMutation.isPending}
             placeholder={t('chat.inputPlaceholder')}
           />
