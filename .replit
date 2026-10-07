@@ -40,3 +40,9 @@ waitForPort = 5000
 
 [agent]
 integrations = ["javascript_database:1.0.0"]
+
+[userenv]
+
+[userenv.shared]
+IPM_STAFF_EMAILS = "KEVIN.A.JACKSON21@GMAIL.COM, kevin@aivarasolutions.com, info@richaf.global, lester.montero89@gmail.com"
+IPM_ADMIN_EMAILS = "KEVIN.A.JACKSON21@GMAIL.COM, kevin@aivarasolutions.com, info@richaf.global, lester.montero89@gmail.com"
